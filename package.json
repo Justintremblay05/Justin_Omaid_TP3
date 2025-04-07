@@ -1,0 +1,19 @@
+{
+  "name": "aaa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Justintremblay05/Justin_Omaid_TP3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Justintremblay05/Justin_Omaid_TP3/issues"
+  },
+  "homepage": "https://github.com/Justintremblay05/Justin_Omaid_TP3#readme"
+}
