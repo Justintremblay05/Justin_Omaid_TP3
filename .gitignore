@@ -44,3 +44,6 @@ Thumbs.db
 /css/
 /.vscode/
 /scss/styles.css
+/eslint.config.mjs
+/package-lock.json
+/package.json
