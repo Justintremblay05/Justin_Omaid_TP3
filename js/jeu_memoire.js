@@ -10,7 +10,6 @@ let tableauDesCartes = [];
 let _paramètres = {
     nbPaires: 12,
     temps: 60,
-    age: 30,
     difficulté: "Facile"
 };
 	
