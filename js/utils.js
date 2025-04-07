@@ -82,8 +82,8 @@ function afficherParametres(idParent, params)
 	lblTemps.textContent = "Temps (secondes)"
 	const temps = document.createElement("input");
 	temps.type="number";
-	temps.id = "nbPaires";
-	temps.name = "nbPaires";
+	temps.id = "temps";
+	temps.name = "temps";
 	temps.value = params.temps;
 	temps.min="10";
 	temps.max="60";
