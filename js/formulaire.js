@@ -5,10 +5,6 @@
 // ##########################
 
 
-
-/* FIN variables globales */ 
-// ##########################
-
 function afficherChoixJeu()
 {
 	// Vide le <main> et affiche le choix du jeu
@@ -39,6 +35,9 @@ function init_formulaire() {
 	// Simple bouton pour passer le formulaire et aller au jeu de mémoire directement
 	let btnInvite = document.getElementById("btnInvite");
 	btnInvite.addEventListener("click", gererBtnInvite, false);
+
+	let btnSoumettre = document.getElementById("btnSoumettre");
+	btnSoumettre.addEventListener("click", validerFormulaire, false);
 }
 
 	
