@@ -1,0 +1,27 @@
+﻿@charset "UTF-8"; 
+@import "partials/bootstrap";
+
+$primary: #0c141e;
+$secondary: #d9cd84;
+
+body
+{
+    padding:0px;
+    margin: 0px;
+    font-family:verdana, sans-serif;
+    background-color:white;
+    font-family: 'Roboto', sans-serif;
+}
+
+div
+{
+    padding: 10px;
+}
+
+header, footer
+{
+    background-color: $primary;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
