@@ -3,39 +3,48 @@
 
 /* DÉBUT variables globales */ 
 // ##########################
-let prenom = document.getElementById("prenom");
-let nom = document.getElementById("nom");
-let courriel = document.getElementById("courriel");
-let confirmation = document.getElementById("confirmation");
-let pseudo = document.getElementById("pseudo");
-
-
+let estValide = true;
+let champsprenom = document.getElementById("prenom");
+let champsnom = document.getElementById("nom");
+let champscourriel = document.getElementById("courriel");
+let champsconfirmation = document.getElementById("confirmation");
+let champspseudo = document.getElementById("pseudo");
 
 
 /* FIN variables globales */ 
 // ##########################
-
+function validerPrenom(prenom) {
+	let msgErreur = document.getElementById("msgErreurPrenom");
+	msgErreur.textContent = "";
+	if(prenom.trim().length === 0) {
+		msgErreur.textContent = "Le prénom est requis.";
+		estValide = false;
+	}
+}
+function validerNom(nom) {
+	let msgErreur = document.getElementById("msgErreurNom");
+	msgErreur.textContent = "";
+	if(nom.trim().length === 0) {
+		msgErreur.textContent = "Le nom est requis.";
+		estValide = false;
+	}
+}
 function validerCourriel(courriel) {
 	let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	let msgErreur = document.getElementById("msgErreurMail");
 	msgErreur.textContent = "";
-	if (regex.test(courriel)) {
-		return true;
-	}
-	else{
-        msgErreur.textContent = "Le courriel n'est pas valide.";
-		return false;
+	if (!regex.test(courriel)) {
+		msgErreur.textContent = "Le courriel est invalide.";
+		estValide = false;
 	}
 }
 function validerConfirmation(confirmation) {
 	let msgErreur = document.getElementById("msgErreurConfirmation");
 	msgErreur.textContent = "";
-	if (confirmation.value === courriel.value) {
-		return true;
-	}
-	else{
+	if (!(confirmation.value === courriel.value)) {
+		
 		msgErreur.textContent = "Les courriels ne correspondent pas.";
-		return false;
+		estValide = false;
 	}
 }
 
@@ -44,11 +53,8 @@ function validerPseudo(pseudo) {
 	let msgErreur = document.getElementById("msgErreurPseudo");
 	msgErreur.textContent = "";
 	if (regex.test(pseudo)) {
-		return true;
-	}
-	else{
 		msgErreur.textContent = "Le pseudo doit contenir entre 3 et 25 caractères.";
-		return false;
+		estValide = false;
 	}
 }
 
@@ -62,9 +68,16 @@ function afficherChoixJeu()
 	// À la fin de cette fonction, on doit vider le <main> et afficher le jeu choisi par l'utilisateur
 }
 
-function validerFormulaire()
+function validerFormulaire(e)
 {
+	e.preventDefault();
+	if(!validerNom) {
+		alert("Le formulaire est valide !");
+	}
+
 	console.log('validerFormulaire() : à la fin de cette fonction, si tout est valide, on peut appeler afficherChoixJeu()');
+	afficherChoixJeu();
+	return true;
 }
 
 function gererBtnInvite()
@@ -79,13 +92,16 @@ function gererBtnInvite()
 
 function init_formulaire() {
 
+	champsnom.addEventListener("input", validerNom);
+
 	// Simple bouton pour passer le formulaire et aller au jeu de mémoire directement
 	let btnInvite = document.getElementById("btnInvite");
 	btnInvite.addEventListener("click", gererBtnInvite, false);
 
 	let btnSoumettre = document.getElementById("btnSoumettre");
 	btnSoumettre.addEventListener("click", validerFormulaire, false);
+	
 }
 
 	
-addEventListener('load', init_formulaire, false);
+addEventListener('load', init_formulaire);
