@@ -3,59 +3,64 @@
 
 /* DÉBUT variables globales */ 
 // ##########################
-let estValide = true;
-let champsprenom = document.getElementById("prenom");
-let champsnom = document.getElementById("nom");
-let champscourriel = document.getElementById("courriel");
-let champsconfirmation = document.getElementById("confirmation");
-let champspseudo = document.getElementById("pseudo");
-
 
 /* FIN variables globales */ 
 // ##########################
-function validerPrenom(prenom) {
-	let msgErreur = document.getElementById("msgErreurPrenom");
-	msgErreur.textContent = "";
+function validerPrenom() {
+	let prenom = document.getElementById("prenom").value;
+	let msgErreur = document.getElementById("msgErreurPrenom").textContent = "";
 	if(prenom.trim().length === 0) {
 		msgErreur.textContent = "Le prénom est requis.";
-		estValide = false;
+		return  false;
 	}
+	if (prenom === document.getElementById("nom").value){
+		msgErreur.textContent = "Le prénom doit être différent du nom";
+		return false;
+	}
+	return true;
+
 }
-function validerNom(nom) {
-	let msgErreur = document.getElementById("msgErreurNom");
-	msgErreur.textContent = "";
+function validerNom() {
+	let nom = document.getElementById("nom").value;
+	let msgErreur = document.getElementById("msgErreurNom").textContent = "";
 	if(nom.trim().length === 0) {
 		msgErreur.textContent = "Le nom est requis.";
-		estValide = false;
+		return false;
 	}
+	if (nom === document.getElementById("prenom").value){
+		msgErreur.textContent = "Le nom doit être différent du prénom";
+	}
+	return true;
 }
-function validerCourriel(courriel) {
+function validerCourriel() {
+	let courriel = document.getElementById("courriel").value;
 	let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-	let msgErreur = document.getElementById("msgErreurMail");
-	msgErreur.textContent = "";
+	let msgErreur = document.getElementById("msgErreurMail").textContent = "";
 	if (!regex.test(courriel)) {
 		msgErreur.textContent = "Le courriel est invalide.";
-		estValide = false;
+		return false;
 	}
+	return true;
 }
-function validerConfirmation(confirmation) {
-	let msgErreur = document.getElementById("msgErreurConfirmation");
-	msgErreur.textContent = "";
-	if (!(confirmation.value === courriel.value)) {
-		
+function validerConfirmation() {
+	let confirmation = document.getElementById("confirmation");
+	let msgErreur = document.getElementById("msgErreurConfirmation").textContent = "";
+	if (!(confirmation.value === document.getElementById("courriel").value)) {
 		msgErreur.textContent = "Les courriels ne correspondent pas.";
-		estValide = false;
+		return false;
 	}
+	return true;
 }
 
-function validerPseudo(pseudo) {
+function validerPseudo() {
+	let pseudo = document.getElementById("pseudo").value;
 	let regex = /^[a-zA-Z]{3,25}$/;
-	let msgErreur = document.getElementById("msgErreurPseudo");
-	msgErreur.textContent = "";
-	if (regex.test(pseudo)) {
+	let msgErreur = document.getElementById("msgErreurPseudo").textContent = "";
+	if (!regex.test(pseudo)) {
 		msgErreur.textContent = "Le pseudo doit contenir entre 3 et 25 caractères.";
-		estValide = false;
+		return false;
 	}
+	return true;
 }
 
 function afficherChoixJeu()
@@ -71,13 +76,14 @@ function afficherChoixJeu()
 function validerFormulaire(e)
 {
 	e.preventDefault();
-	if(!validerNom) {
-		alert("Le formulaire est valide !");
+	if(!validerPrenom() || !validerNom ()|| !validerCourriel ()|| !validerConfirmation ()|| ! validerPseudo()) {
+		alert("Le formulaire est invalide !");
+		return false;
 	}
 
 	console.log('validerFormulaire() : à la fin de cette fonction, si tout est valide, on peut appeler afficherChoixJeu()');
 	afficherChoixJeu();
-	return true;
+	
 }
 
 function gererBtnInvite()
@@ -92,7 +98,9 @@ function gererBtnInvite()
 
 function init_formulaire() {
 
-	champsnom.addEventListener("input", validerNom);
+	document.getElementById("nom").addEventListener("blur", validerNom);
+    document.getElementById("prenom").addEventListener("blur", validerPrenom);
+ 
 
 	// Simple bouton pour passer le formulaire et aller au jeu de mémoire directement
 	let btnInvite = document.getElementById("btnInvite");
