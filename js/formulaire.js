@@ -8,13 +8,13 @@
 // ##########################
 function validerPrenom() {
 	let prenom = document.getElementById("prenom").value;
-	let msgErreur = document.getElementById("msgErreurPrenom").textContent = "";
-	if(prenom.trim().length === 0) {
-		msgErreur.textContent = "Le prénom est requis.";
+	document.getElementById("msgErreurPrenom").textContent = "";
+	if(prenom === "") {
+		document.getElementById("msgErreurPrenom").textContent = "Le prénom est requis.";
 		return  false;
 	}
 	if (prenom === document.getElementById("nom").value){
-		msgErreur.textContent = "Le prénom doit être différent du nom";
+		document.getElementById("msgErreurPrenom").textContent = "Le prénom doit être différent du nom";
 		return false;
 	}
 	return true;
@@ -22,31 +22,32 @@ function validerPrenom() {
 }
 function validerNom() {
 	let nom = document.getElementById("nom").value;
-	let msgErreur = document.getElementById("msgErreurNom").textContent = "";
-	if(nom.trim().length === 0) {
-		msgErreur.textContent = "Le nom est requis.";
+	document.getElementById("msgErreurNom").textContent = "";
+	if(nom === "") {
+		document.getElementById("msgErreurNom").textContent = "Le nom est requis.";
 		return false;
 	}
 	if (nom === document.getElementById("prenom").value){
-		msgErreur.textContent = "Le nom doit être différent du prénom";
+		document.getElementById("msgErreurNom").textContent = "Le nom doit être différent du prénom";
+		return false;
 	}
 	return true;
 }
 function validerCourriel() {
 	let courriel = document.getElementById("courriel").value;
-	let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-	let msgErreur = document.getElementById("msgErreurMail").textContent = "";
+	let regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+	document.getElementById("msgErreurMail").textContent = "";
 	if (!regex.test(courriel)) {
-		msgErreur.textContent = "Le courriel est invalide.";
+		document.getElementById("msgErreurMail").textContent = "Le courriel est invalide.";
 		return false;
 	}
 	return true;
 }
 function validerConfirmation() {
 	let confirmation = document.getElementById("confirmation");
-	let msgErreur = document.getElementById("msgErreurConfirmation").textContent = "";
+	document.getElementById("msgErreurConfirmation").textContent = "";
 	if (!(confirmation.value === document.getElementById("courriel").value)) {
-		msgErreur.textContent = "Les courriels ne correspondent pas.";
+		document.getElementById("msgErreurConfirmation").textContent = "Les courriels ne correspondent pas.";
 		return false;
 	}
 	return true;
@@ -54,10 +55,10 @@ function validerConfirmation() {
 
 function validerPseudo() {
 	let pseudo = document.getElementById("pseudo").value;
-	let regex = /^[a-zA-Z]{3,25}$/;
-	let msgErreur = document.getElementById("msgErreurPseudo").textContent = "";
+	let regex = /^[a-zA-Z0-9._-]{3,20}$/;
+	document.getElementById("msgErreurPseudo").textContent = "";
 	if (!regex.test(pseudo)) {
-		msgErreur.textContent = "Le pseudo doit contenir entre 3 et 25 caractères.";
+		document.getElementById("msgErreurPseudo").textContent = "Le pseudo doit contenir entre 3 et 25 caractères.";
 		return false;
 	}
 	return true;
@@ -76,7 +77,7 @@ function afficherChoixJeu()
 function validerFormulaire(e)
 {
 	e.preventDefault();
-	if(!validerPrenom() || !validerNom ()|| !validerCourriel ()|| !validerConfirmation ()|| ! validerPseudo()) {
+	if(!validerPrenom() || !validerNom ()|| !validerCourriel ()|| !validerConfirmation ()|| !validerPseudo()) {
 		alert("Le formulaire est invalide !");
 		return false;
 	}
@@ -97,17 +98,19 @@ function gererBtnInvite()
 
 
 function init_formulaire() {
-
-	document.getElementById("nom").addEventListener("blur", validerNom);
-    document.getElementById("prenom").addEventListener("blur", validerPrenom);
  
-
 	// Simple bouton pour passer le formulaire et aller au jeu de mémoire directement
 	let btnInvite = document.getElementById("btnInvite");
 	btnInvite.addEventListener("click", gererBtnInvite, false);
 
 	let btnSoumettre = document.getElementById("btnSoumettre");
 	btnSoumettre.addEventListener("click", validerFormulaire, false);
+
+	document.getElementById("nom").addEventListener("blur", validerNom);
+    document.getElementById("prenom").addEventListener("blur", validerPrenom);
+	document.getElementById("courriel").addEventListener("blur", validerCourriel);
+	document.getElementById("confirmation").addEventListener("blur", validerConfirmation);
+	document.getElementById("pseudo").addEventListener("blur", validerPseudo);
 	
 }
 
