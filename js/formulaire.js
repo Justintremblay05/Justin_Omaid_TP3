@@ -68,6 +68,7 @@ function afficherChoixJeu()
 {
 	// Vide le <main> et affiche le choix du jeu
 	document.querySelector('main').innerHTML = '';
+	document.getElementById('pseudoespace').textContent = pseudo;
 	// Il faut prévoir une image, un titre et une description pour chaque jeu
 	///Jeu mémoire
 	let jeuMemoire = document.createElement('div');
@@ -82,22 +83,39 @@ function afficherChoixJeu()
 
 function validerFormulaire(e)
 {
+	document.getElementById('pseudoespace').textContent = document.getElementById("pseudo").value;
+
 	e.preventDefault();
-	if(!validerPrenom() || !validerNom ()|| !validerCourriel ()|| !validerConfirmation ()|| !validerPseudo()) {
+	if(!validerPrenom() || !validerNom() || !validerCourriel() || !validerConfirmation() || !validerPseudo()) {
 		
 		return false;
-	}
-	else{
-		afficherChoixJeu();
 	}
 
 	console.log('validerFormulaire() : à la fin de cette fonction, si tout est valide, on peut appeler afficherChoixJeu()');
 	afficherChoixJeu();
-	
+}
+
+function afficherChoixJeu()
+{
+	// Vide le <main> et affiche le choix du jeu
+	document.querySelector('main').innerHTML = '';
+	// Il faut prévoir une image, un titre et une description pour chaque jeu
+	///Jeu mémoire
+	let jeuMemoire = document.createElement('div');
+	let imgMemoire = document.createElement('img');
+	imgMemoire.src = 'images/img_jeu_memoire.png';
+	imgMemoire.alt = 'Jeu de mémoire';
+	// Il faut savoir quel jeu a été choisi par l'utilisateur, et ensuite appeler soit fonction init_jeu_memoire() ou init_quiz()
+	// Ces fonctions sont le point d'entrée pour le jeu choisi par l'utilisateur et se trouvent respectivement 
+	// dans les fichiers js/jeu_memoire.js et js/quiz.js
+	// À la fin de cette fonction, on doit vider le <main> et afficher le jeu choisi par l'utilisateur
 }
 
 function gererBtnInvite()
 {
+	document.getElementById('pseudoespace').textContent = "invité";
+
+	afficherChoixJeu();
 	// Test direct au quiz
 	// init_quiz();
 
