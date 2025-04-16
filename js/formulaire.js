@@ -18,7 +18,6 @@ function validerPrenom() {
 		return false;
 	}
 	return true;
-
 }
 function validerNom() {
 	let nom = document.getElementById("nom").value;
@@ -34,23 +33,23 @@ function validerNom() {
 	return true;
 }
 function validerCourriel() {
-	let courriel = document.getElementById("courriel").value;
-	let regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-	document.getElementById("msgErreurMail").textContent = "";
-	if (!regex.test(courriel)) {
-		document.getElementById("msgErreurMail").textContent = "Le courriel est invalide.";
-		return false;
-	}
-	return true;
+    let courriel = document.getElementById("mail").value;
+    let regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    document.getElementById("msgErreurMail").textContent = "";
+    if (!regex.test(courriel)) {
+        document.getElementById("msgErreurMail").textContent = "Le courriel est invalide.";
+        return false;
+    }
+    return true;
 }
 function validerConfirmation() {
 	let confirmation = document.getElementById("confirmation");
 	document.getElementById("msgErreurConfirmation").textContent = "";
-	if (!(confirmation.value === document.getElementById("courriel").value)) {
+	if (!(confirmation === document.getElementById("mail").value)) {
 		document.getElementById("msgErreurConfirmation").textContent = "Les courriels ne correspondent pas.";
 		return false;
 	}
-	return true;
+		return true;
 }
 
 function validerPseudo() {
@@ -78,7 +77,7 @@ function validerFormulaire(e)
 {
 	e.preventDefault();
 	if(!validerPrenom() || !validerNom ()|| !validerCourriel ()|| !validerConfirmation ()|| !validerPseudo()) {
-		alert("Le formulaire est invalide !");
+		
 		return false;
 	}
 
@@ -108,7 +107,7 @@ function init_formulaire() {
 
 	document.getElementById("nom").addEventListener("blur", validerNom);
     document.getElementById("prenom").addEventListener("blur", validerPrenom);
-	document.getElementById("courriel").addEventListener("blur", validerCourriel);
+	document.getElementById("mail").addEventListener("blur", validerCourriel);
 	document.getElementById("confirmation").addEventListener("blur", validerConfirmation);
 	document.getElementById("pseudo").addEventListener("blur", validerPseudo);
 	
