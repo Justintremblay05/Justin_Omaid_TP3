@@ -43,7 +43,7 @@ function validerCourriel() {
     return true;
 }
 function validerConfirmation() {
-	let confirmation = document.getElementById("confirmation");
+	let confirmation = document.getElementById("confirmation").value;
 	document.getElementById("msgErreurConfirmation").textContent = "";
 	if (!(confirmation === document.getElementById("mail").value)) {
 		document.getElementById("msgErreurConfirmation").textContent = "Les courriels ne correspondent pas.";
@@ -63,10 +63,17 @@ function validerPseudo() {
 	return true;
 }
 
+
 function afficherChoixJeu()
 {
 	// Vide le <main> et affiche le choix du jeu
+	document.querySelector('main').innerHTML = '';
 	// Il faut prévoir une image, un titre et une description pour chaque jeu
+	///Jeu mémoire
+	let jeuMemoire = document.createElement('div');
+	let imgMemoire = document.createElement('img');
+	imgMemoire.src = 'images/img_jeu_memoire.png';
+	imgMemoire.alt = 'Jeu de mémoire';
 	// Il faut savoir quel jeu a été choisi par l'utilisateur, et ensuite appeler soit fonction init_jeu_memoire() ou init_quiz()
 	// Ces fonctions sont le point d'entrée pour le jeu choisi par l'utilisateur et se trouvent respectivement 
 	// dans les fichiers js/jeu_memoire.js et js/quiz.js
@@ -79,6 +86,9 @@ function validerFormulaire(e)
 	if(!validerPrenom() || !validerNom ()|| !validerCourriel ()|| !validerConfirmation ()|| !validerPseudo()) {
 		
 		return false;
+	}
+	else{
+		afficherChoixJeu();
 	}
 
 	console.log('validerFormulaire() : à la fin de cette fonction, si tout est valide, on peut appeler afficherChoixJeu()');
