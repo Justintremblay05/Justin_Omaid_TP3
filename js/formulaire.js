@@ -69,10 +69,8 @@ function afficherChoixJeu()
 	// Vide le <main> et affiche le choix du jeu
 	let main = document.getElementById("main");
 	main.innerHTML = "";
-	document.getElementById("pseudoespace").textContent = document.getElementById("pseudo").value;
 	let div1 = document.createElement("div");
 	div1.className = "row";
-
 	let div2 = document.createElement("div");
 	div2.className = "col-6";
 	let titreMemoire = document.createElement("h3");
@@ -99,6 +97,7 @@ function afficherChoixJeu()
 	div1.appendChild(div2);
 	div1.appendChild(div3);
 	main.appendChild(div1);
+	document.getElementById("pseudoespace").textContent = document.getElementById("pseudo").value;
 	// Il faut prévoir une image, un titre et une description pour chaque jeu
 	///Jeu mémoire
 
@@ -124,7 +123,6 @@ function validerFormulaire()
 function gererBtnInvite()
 {
 	document.getElementById("pseudoespace").textContent = "invité";
-
 	afficherChoixJeu();
 	// Test direct au quiz
 	// init_quiz();
@@ -152,4 +150,4 @@ function init_formulaire() {
 }
 
 	
-addEventListener('load', init_formulaire);
+addEventListener("load", init_formulaire);

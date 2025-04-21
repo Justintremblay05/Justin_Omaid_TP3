@@ -42,10 +42,9 @@
     <main class="container" id="main">
         <div id="principal">
             <div class="row">
-                <form id="formulaire" action="#" method="post">
+                <form id="formulaire" action="#" method="post" novalidate>
                     <h2>Formulaire...</h2>
                     <div class="mb-3">
-                        <form id="formulaire">
                             <div>
                                 <label for="prenom">Prenom:</label>
                                 <input type="text" class="form-control w-25" id="prenom">
@@ -71,14 +70,11 @@
                               <input type="text" class="form-control w-25" id="pseudo">   
                                 <span class="msgErreur text-danger" id="msgErreurPseudo"></span>
                             </div>
-                            
-                          </form>
-    
-                        <div class="d-flex gap-1">
-                            <!-- N'est pas un type SUBMIT pour éviter de devoir gérer un POST que nous n'avons pas besoin-->
-                            <input type="button" class="btn btn-primary" name="btnInvite" id="btnInvite" value="Mode invité">
-                            <input type="button" class="btn btn-primary" name="btnSoumettre" id="btnSoumettre" value="Soumettre">
-                        </div>
+                            <div class="d-flex gap-1">
+                                <!-- N'est pas un type SUBMIT pour éviter de devoir gérer un POST que nous n'avons pas besoin-->
+                                <input type="button" class="btn btn-primary" name="btnInvite" id="btnInvite" value="Mode invité">
+                                <input type="button" class="btn btn-primary" name="btnSoumettre" id="btnSoumettre" value="Soumettre">
+                            </div>
                     </div>
                     
                 </form>
