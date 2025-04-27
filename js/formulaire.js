@@ -94,6 +94,7 @@ function afficherChoixJeu()
 	let descriptionQuiz = document.createElement("p");
 	descriptionQuiz.textContent = "Description du jeu de quiz";
 	div3.appendChild(descriptionQuiz);
+	div3.addEventListener("click", init_quiz);
 	div1.appendChild(div2);
 	div1.appendChild(div3);
 	main.appendChild(div1);
@@ -146,7 +147,6 @@ function init_formulaire() {
 	document.getElementById("mail").addEventListener("blur", validerCourriel);
 	document.getElementById("confirmation").addEventListener("blur", validerConfirmation);
 	document.getElementById("pseudo").addEventListener("blur", validerPseudo);
-	
 }
 
 	
