@@ -41,7 +41,7 @@ function init_quiz() {
     
 }
 function afficherQuestion() {
-    const main = document.getElementById("main");
+    let main = document.getElementById("main");
     main.innerHTML = "";
 
     if (indexQuestion >= donnees.length) {
@@ -101,7 +101,12 @@ function bouttonSuivant() {
         if (numero - 1 === question.réponse)
         {
             score++;
+            console.log("C'est la bonne réponse");
         }
+    }
+    else
+    {
+        console.log("C'est la mauvaise réponse");
     }
 
     indexQuestion++;
