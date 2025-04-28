@@ -25,6 +25,14 @@ let donnees = [
             "Je ne sais pas"
         ],
         réponse: 1
+    },
+    {
+        question : "10 + 10",
+        réponses: [
+            "20",
+            "10"
+        ],
+        réponse: 0
     }
 ];
 
@@ -36,16 +44,12 @@ let score = 0;
 
 
 function init_quiz() {
-    console.log("init_quiz() : Début de la fonction init_quiz()");
-    let indexQuestion = 0;
-    let score = 0;
-    
-}
-function afficherQuestion() {
+    console.log("dgsthdgdfdefght")
     let main = document.getElementById("main");
     main.innerHTML = "";
 
-    if (indexQuestion >= donnees.length) {
+    if (indexQuestion >= donnees.length)
+    {
         afficherResultat();
         return;
     }
@@ -90,32 +94,61 @@ function afficherQuestion() {
     main.appendChild(div);
 }
 
+
 function bouttonSuivant() {
     let input = document.getElementById("reponseUtilisateur");
     let valeur = input.value.trim();
     let numero = parseInt(valeur);
-
+    
     let question = donnees[indexQuestion];
-
+    
     if (numero >= 1 && numero <= question.réponses.length)
     {
         if (numero - 1 === question.réponse)
-        {
+            {
             score++;
             console.log("C'est la bonne réponse");
         }
-    }
-    else
-    {
-        console.log("C'est la mauvaise réponse");
+        else
+        {
+            console.log("C'est la mauvaise réponse");
+        }
     }
 
     indexQuestion++;
-    afficherQuestion();
+    init_quiz();
 }
 
+function afficherResultat() {
+    let main = document.getElementById("main");
+    main.innerHTML = "";
+    let div = document.createElement("div");
+    div.className = "text-center";
+    let pourcentage = Math.round((score / donnees.length) * 100);
 
+    let h2 = document.createElement("h2");
+    h2.textContent = `Score final : ${pourcentage}%`;
+    div.appendChild(h2);
 
+    let p = document.createElement("p");
+    let img = document.createElement("img");
+    if (pourcentage >= 60)
+    {
+        p.textContent = "Vous avez réussi";
+        img.src = "images/victory.jpg";
+        img.alt = "Résultat";
+        img.className ="img";
+    }
+    else
+    {
+        p.textContent = "Vous avez échoué";
+        img.src = "images/defeat.jpg";
+        img.alt = "Résultat";
+        img.className = "img";
+    }
+    div.append(p , img);
+    main.appendChild(div);
+}
 
 // Ce fichier est inclu dans le fichier index.html et n'a pas besoin d'un addEventListener('load') car
 // son point d'entrée init_quiz() sera appelé dans le fichier formulaire.js via la fonction afficherChoixJeu()
