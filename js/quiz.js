@@ -28,21 +28,92 @@ let donnees = [
     }
 ];
 
-
+let indexQuestion = 0;
+let score = 0;
 
 //* FIN variables globales */	
 // // ##########################
 
 
 function init_quiz() {
-
-	// On doiter vider le <main> et on affiche le quiz, à partir de votre source de données "donnees", qui est une variable globale
-	// Vous remplacer son contenu par le contenu de votre quiz, vos questions et réponses, etc.
-	console.log("init_quiz() : initialisation du quiz");
-	console.log("donnees : ", donnees);
-	
-
+    let indexQuestion = 0;
+    let score = 0;
+    
 }
+function afficherQuestion() {
+    let main = document.getElementById("main");
+    main.innerHTML = "";
+
+    if (indexQuestion >= donnees.length) {
+        afficherResultat();
+        return;
+    }
+
+    let tableau = donnees[indexQuestion];
+    let div = document.createElement("div");
+
+    let h2 = document.createElement("h2");
+    h2.textContent = `Question ${indexQuestion + 1} / ${donnees.length}`;
+    div.appendChild(h2);
+
+    let p = document.createElement("p");
+    p.textContent = tableau.question;
+    div.appendChild(p);
+
+    let ol = document.createElement("ol");
+    for (let i = 0; i < tableau.réponses.length; i++)
+    {
+        let li = document.createElement("li");
+        li.textContent = tableau.réponses[i];
+        ol.appendChild(li);
+    }
+    div.appendChild(ol);
+
+    let label = document.createElement("label");
+    label.setAttribute("for", "reponseUtilisateur");
+    label.textContent = "Réponse :";
+    div.appendChild(label);
+
+    let input = document.createElement("input");
+    input.type = "text";
+    input.id = "reponseUtilisateur";
+    input.className = "form-control w-25 mb-2";
+    div.appendChild(input);
+
+    let boutonSuivant = document.createElement("button");
+    boutonSuivant.textContent = "Suivant";
+    boutonSuivant.className = "btn btn-primary";
+    boutonSuivant.addEventListener("click", bouttonSuivant);
+    div.appendChild(boutonSuivant);
+
+    main.appendChild(div);
+}
+
+function bouttonSuivant() {
+    let input = document.getElementById("reponseUtilisateur");
+    let valeur = input.value.trim();
+    let numero = parseInt(valeur);
+
+    let question = donnees[indexQuestion];
+
+    if (numero >= 1 && numero <= question.réponses.length)
+    {
+        if (numero - 1 === question.réponse)
+        {
+            score++;
+            console.log("C'est la bonne réponse");
+        }
+    }
+    else
+    {
+        console.log("C'est la mauvaise réponse");
+    }
+
+    indexQuestion++;
+    afficherQuestion();
+}
+
+
 
 
 // Ce fichier est inclu dans le fichier index.html et n'a pas besoin d'un addEventListener('load') car

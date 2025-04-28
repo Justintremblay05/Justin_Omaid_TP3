@@ -76,6 +76,19 @@ function validerFormulaire()
 	afficherChoixJeu();
 }
 
+function validerFormulaire()
+{
+	document.getElementById("pseudoespace").textContent = document.getElementById("pseudo").value;
+
+	if(!validerPrenom() || !validerNom() || !validerCourriel() || !validerConfirmation() || !validerPseudo()) {
+		
+		return false;
+	}
+
+	console.log('validerFormulaire() : à la fin de cette fonction, si tout est valide, on peut appeler afficherChoixJeu()');
+	afficherChoixJeu();
+}
+
 
 function afficherChoixJeu() {
     // Vide le <main> et affiche le choix du jeu
@@ -160,7 +173,6 @@ function init_formulaire() {
 	document.getElementById("mail").addEventListener("blur", validerCourriel);
 	document.getElementById("confirmation").addEventListener("blur", validerConfirmation);
 	document.getElementById("pseudo").addEventListener("blur", validerPseudo);
-	
 }
 
 	
