@@ -141,8 +141,6 @@ function gererClickCarte(e) {
     console.log("Carte cliquée : ", e.currentTarget.dataset.index);
     let carte = e.currentTarget;
     carte.src = carte.dataset.image;
-
-    if 
 }
 
 /**
