@@ -113,6 +113,9 @@ function bouttonSuivant() {
     afficherQuestion();
 }
 
+function afficherResultat () {
+    
+}
 
 
 
