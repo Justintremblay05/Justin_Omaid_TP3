@@ -10,12 +10,13 @@ let tableauDesCartes = [];
 let _paramètres = {
     nbPaires: 12,
     temps: 60,
+    age: 30,
     difficulté: "Facile"
 };
 	
 /* FIN variables globales */ 
 // ##########################
-	
+
 /**
  * Débuter le jeu de mémoire (le bouton "Débuter" est cliqué). Cet événement est déjà associé au bon bouton de l'interface
  * car il a été créé dans la fonction afficherParametres() dans le fichier js/utils.js
@@ -38,17 +39,16 @@ function terminerJeuMémoire()
 
 
 function init_jeu_memoire() {
-
 	// On doiter vider le <main> et on affiche le jeu de mémoire
+    let main = document.getElementById("main");
+    main.innerHTML = "";
 	// Affichage de son interface HTML (cartes, etc.) 
 	// Voir la documentation de la fonction pour plus de détails
 	// Exemple d'utilisation : 
 	afficherParametres("main",_paramètres);
 	tableauDesCartes = genererCartes(_paramètres.nbPaires * 2);
-
+    console.log("paramètres : ", _paramètres);
 	console.log("tableauDesCartes : ", tableauDesCartes);
-
-
 }
 
 // Ce fichier est inclu dans le fichier index.html et n'a pas besoin d'un addEventListener('load') car

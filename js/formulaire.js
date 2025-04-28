@@ -63,49 +63,17 @@ function validerPseudo() {
 	return true;
 }
 
-
-function afficherChoixJeu()
+function validerFormulaire()
 {
-	// Vide le <main> et affiche le choix du jeu
-	let main = document.getElementById("main");
-	main.innerHTML = "";
-	let div1 = document.createElement("div");
-	div1.className = "row";
-	let div2 = document.createElement("div");
-	div2.className = "col-6";
-	let titreMemoire = document.createElement("h3");
-	titreMemoire.textContent = "Jeu de mémoire";
-	div2.appendChild(titreMemoire);
-	let imgMemoire = document.createElement("img");
-	imgMemoire.src = "../images/img_jeu_memoire.jpg";
-	div2.appendChild(imgMemoire);
-	let descriptionMemoire = document.createElement("p");
-	descriptionMemoire.textContent = "Description du jeu de mémoire";
-	div2.appendChild(descriptionMemoire);
-	
-	let div3 = document.createElement("div");
-	div3.className = "col-6";
-	let titreQuiz = document.createElement("h3");
-	titreQuiz.textContent = "Jeu de quiz";
-	div3.appendChild(titreQuiz);
-	let imgQuiz = document.createElement("img");
-	imgQuiz.src = "../images/img_jeu_memoire.jpg";
-	div3.appendChild(imgQuiz);
-	let descriptionQuiz = document.createElement("p");
-	descriptionQuiz.textContent = "Description du jeu de quiz";
-	div3.appendChild(descriptionQuiz);
-
-	div1.appendChild(div2);
-	div1.appendChild(div3);
-	main.appendChild(div1);
 	document.getElementById("pseudoespace").textContent = document.getElementById("pseudo").value;
-	// Il faut prévoir une image, un titre et une description pour chaque jeu
-	///Jeu mémoire
 
-	// Il faut savoir quel jeu a été choisi par l'utilisateur, et ensuite appeler soit fonction init_jeu_memoire() ou init_quiz()
-	// Ces fonctions sont le point d'entrée pour le jeu choisi par l'utilisateur et se trouvent respectivement 
-	// dans les fichiers js/jeu_memoire.js et js/quiz.js
-	// À la fin de cette fonction, on doit vider le <main> et afficher le jeu choisi par l'utilisateur
+	if(!validerPrenom() || !validerNom() || !validerCourriel() || !validerConfirmation() || !validerPseudo()) {
+		
+		return false;
+	}
+
+	console.log('validerFormulaire() : à la fin de cette fonction, si tout est valide, on peut appeler afficherChoixJeu()');
+	afficherChoixJeu();
 }
 
 function validerFormulaire()
@@ -119,6 +87,64 @@ function validerFormulaire()
 
 	console.log('validerFormulaire() : à la fin de cette fonction, si tout est valide, on peut appeler afficherChoixJeu()');
 	afficherChoixJeu();
+}
+
+
+function afficherChoixJeu() {
+    // Vide le <main> et affiche le choix du jeu
+    let main = document.getElementById("main");
+    main.innerHTML = "";
+    main.className = "d-flex justify-content-around";
+
+    let principal = document.createElement("div");
+	principal.id = "principal";
+    principal.className = "row";
+
+    // Création de div2 pour le jeu de mémoire
+    let div2 = document.createElement("div");
+    div2.id = "jeuMemoire";
+    div2.className = "col-6";
+    let titreMemoire = document.createElement("h3");
+    titreMemoire.textContent = "Jeu de mémoire";
+    div2.appendChild(titreMemoire);
+    let imgMemoire = document.createElement("img");
+    imgMemoire.src = "../images/img_jeu_memoire.jpg";
+    div2.appendChild(imgMemoire);
+    let descriptionMemoire = document.createElement("p");
+    descriptionMemoire.textContent = "Description du jeu de mémoire";
+    div2.appendChild(descriptionMemoire);
+
+
+    // Création de div3 pour le quiz
+    let div3 = document.createElement("div");
+	div3.id = "jeuQuiz";
+    div3.className = "col-6";
+    let titreQuiz = document.createElement("h3");
+    titreQuiz.textContent = "Jeu de quiz";
+    div3.appendChild(titreQuiz);
+    let imgQuiz = document.createElement("img");
+    imgQuiz.src = "../images/img_jeu_memoire.jpg";
+    div3.appendChild(imgQuiz);
+    let descriptionQuiz = document.createElement("p");
+    descriptionQuiz.textContent = "Description du jeu de quiz";
+    div3.appendChild(descriptionQuiz);
+
+    // Ajout des divs au conteneur principal
+    principal.appendChild(div3);
+    principal.appendChild(div2);
+    main.appendChild(principal);
+
+
+    // Ajout de l'événement pour démarrer le jeu de mémoire
+    div2.addEventListener("click", init_jeu_memoire);
+
+    // Vérification pour pseudo
+    let pseudoElement = document.getElementById("pseudo");
+    if (pseudoElement) {
+        document.getElementById("pseudoespace").textContent = pseudoElement.value;
+    } else {
+        document.getElementById("pseudoespace").textContent = "invité";
+    }
 }
 
 function gererBtnInvite()

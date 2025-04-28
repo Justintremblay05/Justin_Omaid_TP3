@@ -24,3 +24,26 @@ header, footer
     padding: 15px;
     text-align: center;
 }
+
+.grille-cartes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.carte {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.carte:hover {
+    background-color: gray;
+}
