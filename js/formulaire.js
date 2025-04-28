@@ -3,6 +3,7 @@
 
 /* DÉBUT variables globales */ 
 // ##########################
+
 /* FIN variables globales */ 
 // ##########################
 function validerPrenom() {
@@ -129,17 +130,22 @@ function afficherChoixJeu() {
     div3.appendChild(descriptionQuiz);
 
     // Ajout des divs au conteneur principal
-    principal.append(div3 , div2);
+    principal.appendChild(div3);
+    principal.appendChild(div2);
     main.appendChild(principal);
+
 
     // Ajout de l'événement pour démarrer le jeu de mémoire
     div2.addEventListener("click", init_jeu_memoire);
 	div3.addEventListener("click", init_quiz);
 
-	//Pseudo qui reste affiché dans le header
+    // Vérification pour pseudo
     let pseudoElement = document.getElementById("pseudo");
-	document.getElementById("pseudoespace").textContent = pseudoElement.value;
-
+    if (pseudoElement) {
+        document.getElementById("pseudoespace").textContent = pseudoElement.value;
+    } else {
+        document.getElementById("pseudoespace").textContent = "invité";
+    }
 }
 
 function gererBtnInvite()
