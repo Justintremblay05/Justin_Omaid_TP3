@@ -137,6 +137,7 @@ function afficherChoixJeu() {
 
     // Ajout de l'événement pour démarrer le jeu de mémoire
     div2.addEventListener("click", init_jeu_memoire);
+	div3.addEventListener("click", init_quiz);
 
     // Vérification pour pseudo
     let pseudoElement = document.getElementById("pseudo");

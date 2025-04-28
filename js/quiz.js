@@ -36,6 +36,7 @@ let score = 0;
 
 
 function init_quiz() {
+    console.log("init_quiz() : Début de la fonction init_quiz()");
     let indexQuestion = 0;
     let score = 0;
     
