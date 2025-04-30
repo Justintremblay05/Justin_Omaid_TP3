@@ -50,7 +50,6 @@ let _paramètres = {
  * car il a été créé dans la fonction afficherParametres() dans le fichier js/utils.js
  */
 function debuterJeuMémoire() {
-    alert("Déclenchement de la fonction debuterJeuMémoire()");
 
     let nbPairesElement = document.getElementById("nbPaires");
     let tempsElement = document.getElementById("temps");
@@ -67,8 +66,6 @@ function debuterJeuMémoire() {
 
     console.log(`Nombre de paires : ${nbPaires}, Temps : ${temps}, Difficulté : ${difficulte}`);
 
-    let main = document.getElementById("main");
-    main.innerHTML = "";
 
     let div = document.getElementById("navigation");
     let titre = document.createElement("h2");
@@ -78,7 +75,7 @@ function debuterJeuMémoire() {
 
     let cartes = document.createElement("div");
     cartes.id = "cartes";
-    cartes.className = "d-flex flex-wrap justify-content-center";
+    cartes.className = "d-flex flex-wrap justify-content-center ";
 
     let lesCartes = [];
 
@@ -106,28 +103,22 @@ function debuterJeuMémoire() {
         lesCartes.push(double);
     }
 
-    // Mélanger les cartes
     melangerElements(lesCartes);
 
-    // Ajouter chaque carte au conteneur DOM
     lesCartes.forEach((carte) => {
         cartes.appendChild(carte);
     });
 
-    // Ajouter le conteneur des cartes au <main>
     main.appendChild(cartes);
 }
 
 function melangerElements(tableau) {
     let currentIndex = tableau.length;
 
-    // Tant qu'il reste des éléments à mélanger.
     while (currentIndex !== 0) {
-        // Choisir un index aléatoire parmi les éléments restants.
         let randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        // Échanger l'élément courant avec l'élément aléatoire.
         [tableau[currentIndex], tableau[randomIndex]] = [
             tableau[randomIndex],
             tableau[currentIndex],
@@ -137,10 +128,45 @@ function melangerElements(tableau) {
     return tableau;
 }
 
+let verrouillage = false;
+
 function gererClickCarte(e) {
-    console.log("Carte cliquée : ", e.currentTarget.dataset.index);
+    if (verrouillage) {
+        console.log("Action bloquée : Attendez que les cartes soient retournées.");
+        return;
+    }
+
     let carte = e.currentTarget;
+
+    if (cartesSelectionnées.includes(carte)) {
+        console.log("Vous avez cliqué deux fois sur la même carte !");
+        return;
+    }
+
     carte.src = carte.dataset.image;
+
+    cartesSelectionnées.push(carte);
+
+    if (cartesSelectionnées.length === 2) {
+        let carte1 = cartesSelectionnées[0];
+        let carte2 = cartesSelectionnées[1];
+
+        verrouillage = true;
+
+        if (carte1.dataset.index === carte2.dataset.index) {
+            console.log("Les cartes correspondent !");
+            cartesSelectionnées = [];
+            verrouillage = false;
+        } else {
+            console.log("Les cartes ne correspondent pas !");
+            setTimeout(() => {
+                carte1.src = "../images/Icon.jpg";
+                carte2.src = "../images/Icon.jpg";
+                cartesSelectionnées = [];
+                verrouillage = false;
+            }, 1000);
+        }
+    }
 }
 
 /**
@@ -162,11 +188,16 @@ function init_jeu_memoire() {
     // Exemple d'utilisation : 
 
 
-
-    afficherParametres("main", _paramètres);
+    main.className = "grid container";
+    let div1 = document.createElement("div");
+    div1.className = "col-12"
+    let div2 = document.createElement("div");
+    div2.className = "col-12"
+    div1.appendChild(afficherParametres("main", _paramètres));
+    div2.appendChild(debuterJeuMémoire);
+    main.appendChild(div1);
+    main.appendChild(div2);
     tableauDesCartes = genererCartes(_paramètres.nbPaires);
-    console.log("paramètres : ", _paramètres);
-    console.log("tableauDesCartes : ", tableauDesCartes);
 }
 
 // Ce fichier est inclu dans le fichier index.html et n'a pas besoin d'un addEventListener('load') car

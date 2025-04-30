@@ -56,94 +56,109 @@ function genererCartes(nbCartes)
  * @param {string} idParent id de l'élément parent où l'on désire créer cette interface HTML
  * @param {object} params objet contenant les paramètres du jeu (cette variable existe déjà dans les variables globales fournies)
  */
-function afficherParametres(idParent, params)
-{
-	let parent = document.getElementById(idParent);
+function afficherParametres(idParent, params) {
+    let parent = document.getElementById(idParent);
 
-	const divParams = document.createElement("div");
-	divParams.className = "parametres";
-	
-	// Création Nombre de paires
-	const divNbPaires = document.createElement("div");
-	const lblNbPaires =  document.createElement("label");
-	lblNbPaires.textContent = "Nombre de paires"
-	const nbPaires = document.createElement("input");
-	nbPaires.type="number";
-	nbPaires.id = "nbPaires";
-	nbPaires.name = "nbPaires";
-	nbPaires.value = params.nbPaires;
-	nbPaires.min="3";
-	nbPaires.max="25";
-	divNbPaires.append(lblNbPaires, nbPaires);
+    const divParams = document.createElement("div");
+    divParams.className = "parametres d-flex justify-content-between align-items-center"; // Flexbox pour disposition horizontale
+    divParams.style.display = "flex"; // Disposition horizontale
+    divParams.style.gap = "20px"; // Espacement entre les éléments
 
-	// Création Temps
-	const divTemps = document.createElement("div");
-	const lblTemps =  document.createElement("label");
-	lblTemps.textContent = "Temps (secondes)"
-	const temps = document.createElement("input");
-	temps.type="number";
-	temps.id = "temps";
-	temps.name = "temps";
-	temps.value = params.temps;
-	temps.min="10";
-	temps.max="60";
-	divTemps.append(lblTemps, temps);
+    // Création Nombre de paires
+    const divNbPaires = document.createElement("div");
+    divNbPaires.style.display = "flex";
+    divNbPaires.style.flexDirection = "column";
+    divNbPaires.style.alignItems = "center";
+    const lblNbPaires = document.createElement("label");
+    lblNbPaires.textContent = "Nombre de paires";
+    const nbPaires = document.createElement("input");
+    nbPaires.type = "number";
+    nbPaires.id = "nbPaires";
+    nbPaires.name = "nbPaires";
+    nbPaires.value = params.nbPaires;
+    nbPaires.min = "3";
+    nbPaires.max = "25";
+    divNbPaires.append(lblNbPaires, nbPaires);
 
-	// Création Difficulté
-	const divDiff = document.createElement("div");
-	const lblDiff =  document.createElement("label");
-	lblDiff.textContent = "Difficulté"
-	const diff = document.createElement("select");
-	diff.id = "diff";
-	diff.name = "diff";
-	const optFacile = document.createElement("option");
-	optFacile.value = "Facile";
-	optFacile.textContent = "Facile";
-	const optDifficile = document.createElement("option");
-	optDifficile.value = "Difficile";
-	optDifficile.textContent = "Difficile";
+    // Création Temps
+    const divTemps = document.createElement("div");
+    divTemps.style.display = "flex";
+    divTemps.style.flexDirection = "column";
+    divTemps.style.alignItems = "center";
+    const lblTemps = document.createElement("label");
+    lblTemps.textContent = "Temps (secondes)";
+    const temps = document.createElement("input");
+    temps.type = "number";
+    temps.id = "temps";
+    temps.name = "temps";
+    temps.value = params.temps;
+    temps.min = "10";
+    temps.max = "60";
+    divTemps.append(lblTemps, temps);
 
-	if(params.difficulté == "Facile")
-	{
-		optFacile.selected = true;
-	}
-	else
-	{
-		optDifficile.selected = true;
-	}
+    // Création Difficulté
+    const divDiff = document.createElement("div");
+    divDiff.style.display = "flex";
+    divDiff.style.flexDirection = "column";
+    divDiff.style.alignItems = "center";
+    const lblDiff = document.createElement("label");
+    lblDiff.textContent = "Difficulté";
+    const diff = document.createElement("select");
+    diff.id = "diff";
+    diff.name = "diff";
+    const optFacile = document.createElement("option");
+    optFacile.value = "Facile";
+    optFacile.textContent = "Facile";
+    const optDifficile = document.createElement("option");
+    optDifficile.value = "Difficile";
+    optDifficile.textContent = "Difficile";
 
-	diff.append(optFacile,optDifficile);
+    if (params.difficulté == "Facile") {
+        optFacile.selected = true;
+    } else {
+        optDifficile.selected = true;
+    }
 
-	// Création Minuterie
-	const divMinuterie = document.createElement("div");
-	const lblMinuterie =  document.createElement("label");
-	lblMinuterie.textContent = "Minuterie";
-	const Minuterie = document.createElement("div");
-	Minuterie.id = "timer";
-	Minuterie.textContent = "0";
-	divMinuterie.append(lblMinuterie,Minuterie);
+    diff.append(optFacile, optDifficile);
+    divDiff.append(lblDiff, diff);
 
-	// Création du bouton "Débuter"
-	const divButtonStart = document.createElement("div");
-	const buttonStart = document.createElement("button");
-	buttonStart.textContent = "Débuter";
-	buttonStart.id = "startButton";
-	buttonStart.addEventListener("click", debuterJeuMémoire, false);
-	divButtonStart.appendChild(buttonStart);
+    // Création Minuterie
+    const divMinuterie = document.createElement("div");
+    divMinuterie.style.display = "flex";
+    divMinuterie.style.flexDirection = "column";
+    divMinuterie.style.alignItems = "center";
+    const lblMinuterie = document.createElement("label");
+    lblMinuterie.textContent = "Minuterie";
+    const Minuterie = document.createElement("div");
+    Minuterie.id = "timer";
+    Minuterie.textContent = "0";
+    divMinuterie.append(lblMinuterie, Minuterie);
 
-	// Création du bouton "Terminer"
-	const divButtonEnd = document.createElement("div");
-	const buttonEnd = document.createElement("button");
-	buttonEnd.textContent = "Terminer";
-	buttonEnd.id = "endButton";
-	buttonEnd.addEventListener("click", terminerJeuMémoire, false);
-	divButtonEnd.appendChild(buttonEnd);
-	
+    // Création du bouton "Débuter"
+    const divButtonStart = document.createElement("div");
+    divButtonStart.style.display = "flex";
+    divButtonStart.style.flexDirection = "column";
+    divButtonStart.style.alignItems = "center";
+    const buttonStart = document.createElement("button");
+    buttonStart.textContent = "Débuter";
+    buttonStart.id = "startButton";
+    buttonStart.addEventListener("click", debuterJeuMémoire, false);
+    divButtonStart.appendChild(buttonStart);
 
-	// Ajout à l'interface
-	divDiff.append(lblDiff, diff);
-	divParams.append(divNbPaires, divTemps, divDiff, divMinuterie, divButtonStart, divButtonEnd);
-	parent.appendChild(divParams);
+    // Création du bouton "Terminer"
+    const divButtonEnd = document.createElement("div");
+    divButtonEnd.style.display = "flex";
+    divButtonEnd.style.flexDirection = "column";
+    divButtonEnd.style.alignItems = "center";
+    const buttonEnd = document.createElement("button");
+    buttonEnd.textContent = "Terminer";
+    buttonEnd.id = "endButton";
+    buttonEnd.addEventListener("click", terminerJeuMémoire, false);
+    divButtonEnd.appendChild(buttonEnd);
+
+    // Ajout à l'interface
+    divParams.append(divNbPaires, divTemps, divDiff, divMinuterie, divButtonStart, divButtonEnd);
+    parent.appendChild(divParams);
 }
 
 
