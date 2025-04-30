@@ -44,7 +44,6 @@ let score = 0;
 
 
 function init_quiz() {
-    console.log("dgsthdgdfdefght")
     let main = document.getElementById("main");
     main.innerHTML = "";
 

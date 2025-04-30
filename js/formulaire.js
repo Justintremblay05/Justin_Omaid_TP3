@@ -75,7 +75,6 @@ function validerFormulaire()
 	afficherChoixJeu();
 }
 
-
 function afficherChoixJeu() {
     // Vide le <main> et affiche le choix du jeu
     let main = document.getElementById("main");
