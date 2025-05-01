@@ -110,6 +110,21 @@ function debuterJeuMémoire() {
     });
 
     main.appendChild(cartes);
+    let timerElement = document.getElementById("timer");
+    let valeurtemps = document.getElementById("temps").value;
+    timerElement.textContent = valeurtemps;
+
+    intervalID = setInterval(decrementerTimer, 1000);
+}
+
+function decrementerTimer() {
+    let timerValue = parseInt(document.getElementById("timer").textContent, 10);
+    if (timerValue > 0) {
+        timerValue--;
+        document.getElementById("timer").textContent = timerValue;
+    } else {
+
+    }
 }
 
 function melangerElements(tableau) {
@@ -128,8 +143,15 @@ function melangerElements(tableau) {
     return tableau;
 }
 
-let verrouillage = false;
+function finPartie() {
+    if(pair === document.getElementById("nbPaires").value) {
+        alert("Vous avez gagné !");
+        clearInterval(intervalID);
+    }
+}
 
+let verrouillage = false;
+let pair = 0;
 function gererClickCarte(e) {
     if (verrouillage) {
         console.log("Action bloquée : Attendez que les cartes soient retournées.");
@@ -152,11 +174,15 @@ function gererClickCarte(e) {
         let carte2 = cartesSelectionnées[1];
 
         verrouillage = true;
-
+        
         if (carte1.dataset.index === carte2.dataset.index) {
             console.log("Les cartes correspondent !");
             cartesSelectionnées = [];
             verrouillage = false;
+            pair++;
+            if (pair === document.getElementById("nbPaires").value) {
+                finPartie();
+            }
         } else {
             console.log("Les cartes ne correspondent pas !");
             setTimeout(() => {
