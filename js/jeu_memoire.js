@@ -122,7 +122,7 @@ function decrementerTimer() {
         document.getElementById("timer").textContent = timerValue;
     } else {
         ClearInterval(intervalID);
-        finPartie();
+        terminerJeuMémoire();
     }
 }
 
@@ -140,15 +140,6 @@ function melangerElements(tableau) {
     }
 
     return tableau;
-}
-
-function finPartie() {
-    if(pair === document.getElementById("nbPaires").value) {
-        Gagner();
-    }
-    else{
-        Perdre();
-    }
 }
 
 let verrouillage = false;
@@ -182,7 +173,7 @@ function gererClickCarte(e) {
             verrouillage = false;
             pair++;
             if (pair === document.getElementById("nbPaires").value) {
-                finPartie();
+                terminerJeuMémoire();
             }
         } else {
             console.log("Les cartes ne correspondent pas !");
@@ -201,8 +192,13 @@ function gererClickCarte(e) {
  * car il a été créé dans la fonction afficherParametres() dans le fichier js/utils.js
  */
 function terminerJeuMémoire() {
-    alert("Déclanchement de la fonction terminerJeuMémoire()");
     // Todo : faire la logique
+    if(pair === document.getElementById("nbPaires").value) {
+        Gagner();
+    }
+    else{
+        Perdre();
+    }
 }
 
 
@@ -225,6 +221,7 @@ function init_jeu_memoire() {
     main.appendChild(div1);
     main.appendChild(div2);
     tableauDesCartes = genererCartes(_paramètres.nbPaires);
+
 }
 
 // Ce fichier est inclu dans le fichier index.html et n'a pas besoin d'un addEventListener('load') car
