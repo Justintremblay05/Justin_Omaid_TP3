@@ -134,7 +134,10 @@ function gererBtnInvite()
 	afficherChoixJeu();
 }
 
+
+
 function Gagner(){
+	const musique = new Audio("../sons/bon.mp3");
 	let main = document.getElementById("main");
 	main.innerHTML = "";
 	let div = document.createElement("div");
@@ -148,9 +151,11 @@ function Gagner(){
 	img.className ="img";
 	div.appendChild(img);
 	main.appendChild(div);
+	musique.play();
 }
 
 function Perdre(){
+	const musique = new Audio("../sons/mauvais.mp3");
 	let main = document.getElementById("main");
 	main.innerHTML = "";
 	let div = document.createElement("div");
@@ -164,6 +169,7 @@ function Perdre(){
 	img.className ="img";
 	div.appendChild(img);
 	main.appendChild(div);
+	musique.play();
 }
 
 
