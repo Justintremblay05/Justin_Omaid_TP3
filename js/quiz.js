@@ -153,14 +153,34 @@ function bouttonSuivant() {
 }
 
 function afficherResultat() {
+    let main = document.getElementById("main");
+    main.innerHTML = "";
+    let div = document.createElement("div");
+    div.className = "text-center";
+    let pourcentage = Math.round((score / donnees.length) * 100);
+
+    let h2 = document.createElement("h2");
+    h2.textContent = `Score final : ${pourcentage}%`;
+    div.appendChild(h2);
+
+    let p = document.createElement("p");
+    let img = document.createElement("img");
     if (pourcentage >= 60)
     {
-        Gagner();
+        p.textContent = "Vous avez réussi";
+        img.src = "images/victory.jpg";
+        img.alt = "Résultat";
+        img.className ="img";
     }
     else
     {
-        Perdre();
+        p.textContent = "Vous avez échoué";
+        img.src = "images/defeat.jpg";
+        img.alt = "Résultat";
+        img.className = "img";
     }
+    div.append(p , img);
+    main.appendChild(div);
 }
 
 // Ce fichier est inclu dans le fichier index.html et n'a pas besoin d'un addEventListener('load') car
