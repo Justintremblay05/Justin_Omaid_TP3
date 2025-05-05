@@ -50,6 +50,14 @@ let _paramètres = {
  * car il a été créé dans la fonction afficherParametres() dans le fichier js/utils.js
  */
 function debuterJeuMémoire() {
+    let cartes = document.getElementById("cartes");
+    if (!cartes) {
+        cartes = document.createElement("div");
+        cartes.id = "cartes";
+        cartes.className = "d-flex flex-wrap justify-content-center";
+    }
+
+    cartes.innerHTML = "";
 
     let nbPairesElement = document.getElementById("nbPaires");
     let tempsElement = document.getElementById("temps");
@@ -60,22 +68,11 @@ function debuterJeuMémoire() {
         return;
     }
 
-    let nbPaires = nbPairesElement.value;
-    let temps = tempsElement.value;
+    let nbPaires = parseInt(nbPairesElement.value, 10);
+    let temps = parseInt(tempsElement.value, 10);
     let difficulte = difficulteElement.value;
 
     console.log(`Nombre de paires : ${nbPaires}, Temps : ${temps}, Difficulté : ${difficulte}`);
-
-
-    let div = document.getElementById("navigation");
-    let titre = document.createElement("h2");
-    titre.textContent = "Jeu de mémoire";
-    titre.className = "flex justify-content-block";
-    div.appendChild(titre);
-
-    let cartes = document.createElement("div");
-    cartes.id = "cartes";
-    cartes.className = "d-flex flex-wrap justify-content-center ";
 
     let lesCartes = [];
 
@@ -109,10 +106,11 @@ function debuterJeuMémoire() {
         cartes.appendChild(carte);
     });
 
+    let main = document.getElementById("main");
     main.appendChild(cartes);
+
     let timerElement = document.getElementById("timer");
-    let valeurtemps = document.getElementById("temps").value;
-    timerElement.textContent = valeurtemps;
+    timerElement.textContent = temps;
 
     intervalID = setInterval(decrementerTimer, 1000);
 }
@@ -123,7 +121,8 @@ function decrementerTimer() {
         timerValue--;
         document.getElementById("timer").textContent = timerValue;
     } else {
-
+        ClearInterval(intervalID);
+        finPartie();
     }
 }
 
@@ -145,8 +144,10 @@ function melangerElements(tableau) {
 
 function finPartie() {
     if(pair === document.getElementById("nbPaires").value) {
-        alert("Vous avez gagné !");
-        clearInterval(intervalID);
+        Gagner();
+    }
+    else{
+        Perdre();
     }
 }
 
