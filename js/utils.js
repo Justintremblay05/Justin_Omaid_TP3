@@ -153,7 +153,7 @@ function afficherParametres(idParent, params) {
     const buttonEnd = document.createElement("button");
     buttonEnd.textContent = "Terminer";
     buttonEnd.id = "endButton";
-    buttonEnd.addEventListener("click", terminerJeuMémoire, false);
+    buttonEnd.addEventListener("click", terminerJeuMémoire);
     divButtonEnd.appendChild(buttonEnd);
 
     // Ajout à l'interface
