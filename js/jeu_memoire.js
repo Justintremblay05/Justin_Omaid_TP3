@@ -51,6 +51,10 @@ let _paramètres = {
  */
 function debuterJeuMémoire() {
     alert("Déclenchement de la fonction debuterJeuMémoire()");
+    
+    _paramètres.nbPaires = document.getElementById("nbPaires").value;
+    _paramètres.temps =
+    tableauDesCartes = genererCartes(_paramètres.nbPaires);
 
     let nbPairesElement = document.getElementById("nbPaires");
     let tempsElement = document.getElementById("temps");

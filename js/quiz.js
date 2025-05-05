@@ -9,36 +9,70 @@
 // Vous pouvez même modifier entièrement la structure de cette variable si vous le désirez
 let donnees = [
     {
-        question: "À quoi sert un aria-label?",
+        question: "Dans quelle région de Runeterra se déroule principalement la série Arcane ?",
         réponses: [
-            "Ajouter du contenu sur une balise pour aider les lecteurs d'écran",
-            "À rien",
-            "Je ne sais pas"
+            "Noxus",
+            "Ionia",
+            "Piltover et Zaun",
+            "Freljord"
+        ],
+        réponse: 2
+    },
+    {
+        question: "Quel champion était autrefois un soldat de Demacia, aujourd'hui devenu un hôte pour un Aspect ?",
+        réponses: [
+            "Garen",
+            "Sett",
+            "Galio",
+            "Pantheon"
+        ],
+        réponse: 3
+    },
+    {
+        question: "De quelle région vient Yasuo",
+        réponses: [
+            "Ionia",
+            "Noxus",
+            "Shurima",
+            "Bilgewater"
         ],
         réponse: 0
     },
     {
-        question: "HTML vient de :",
+        question: "Quel champion a pour titre La Main de Noxus ?",
         réponses: [
-            "Hyper Typo Meta Lol",
-            "Hypertext markup language",
-            "Je ne sais pas"
-        ],
-        réponse: 1
-    },
-    {
-        question : "10 + 10",
-        réponses: [
-            "20",
-            "10"
+            "Swain",
+            "Darius",
+            "Draven",
+            "Sion"
         ],
         réponse: 0
-    }
+    },
+    {
+        question: "Qui est la soeur jumelle de Kayle ?",
+        réponses: [
+            "Leona",
+            "Diana",
+            "Morgana",
+            "Zoe"
+        ],
+        réponse: 2
+    },
+    {
+        question: "Qui a tué le père de Katarina, selon les événements récents du lore ?",
+        réponses:[
+            "Swain",
+            "Talon",
+            "Leblanc",
+            "Katarina elle-même"
+        ],
+        réponse:0
+    },
 ];
 
 let indexQuestion = 0;
 let score = 0;
-
+//6 questions minimum 12 maximum;
 //* FIN variables globales */	
 // // ##########################
 
@@ -119,34 +153,14 @@ function bouttonSuivant() {
 }
 
 function afficherResultat() {
-    let main = document.getElementById("main");
-    main.innerHTML = "";
-    let div = document.createElement("div");
-    div.className = "text-center";
-    let pourcentage = Math.round((score / donnees.length) * 100);
-
-    let h2 = document.createElement("h2");
-    h2.textContent = `Score final : ${pourcentage}%`;
-    div.appendChild(h2);
-
-    let p = document.createElement("p");
-    let img = document.createElement("img");
     if (pourcentage >= 60)
     {
-        p.textContent = "Vous avez réussi";
-        img.src = "images/victory.jpg";
-        img.alt = "Résultat";
-        img.className ="img";
+        Gagner();
     }
     else
     {
-        p.textContent = "Vous avez échoué";
-        img.src = "images/defeat.jpg";
-        img.alt = "Résultat";
-        img.className = "img";
+        Perdre();
     }
-    div.append(p , img);
-    main.appendChild(div);
 }
 
 // Ce fichier est inclu dans le fichier index.html et n'a pas besoin d'un addEventListener('load') car
