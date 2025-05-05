@@ -132,12 +132,42 @@ function gererBtnInvite()
 {
 	document.getElementById("pseudoespace").textContent = "invité";
 	afficherChoixJeu();
-	// Test direct au quiz
-	// init_quiz();
-
-	// Test direct au jeu de mémoire
-	// init_jeu_memoire();
 }
+
+function Gagner(){
+	let main = document.getElementById("main");
+	main.innerHTML = "";
+	let div = document.createElement("div");
+	div.className = "text-center";
+	let h2 = document.createElement("h2");
+	h2.textContent = "Vous avez gagné !";
+	div.appendChild(h2);
+	let img = document.createElement("img");
+	img.src = "../images/victory.jpg";
+	img.alt = "Résultat";
+	img.className ="img";
+	div.appendChild(img);
+	main.appendChild(div);
+}
+
+function Perdre(){
+	let main = document.getElementById("main");
+	main.innerHTML = "";
+	let div = document.createElement("div");
+	div.className = "text-center";
+	let h2 = document.createElement("h2");
+	h2.textContent = "Vous avez perdu !";
+	div.appendChild(h2);
+	let img = document.createElement("img");
+	img.src = "../images/defeat.jpg";
+	img.alt = "Résultat";
+	img.className ="img";
+	div.appendChild(img);
+	main.appendChild(div);
+}
+
+
+
 
 
 function init_formulaire() {
