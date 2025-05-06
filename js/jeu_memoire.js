@@ -44,6 +44,7 @@ let _paramètres = {
 
 let intervalID;
 let main = document.getElementById("main");
+let body = document.getElementById("body");
 
 /* FIN variables globales */
 // ##########################
@@ -74,9 +75,18 @@ function debuterJeuMémoire() {
     let nbPaires = parseInt(nbPairesElement.value, 10);
     let temps = parseInt(tempsElement.value, 10);
     let difficulte = difficulteElement.value;
-    // if (difficulte === "Difficile") {
-    //     main.
-    // }
+    if (difficulte === "Difficile") {
+        let body = document.getElementById("body");
+        if (body) {
+            body.style.backgroundImage = "url('../images/bg.jpg')"; // Remplacez par le chemin de votre image
+            body.style.backgroundSize = "cover";
+            body.style.backgroundPosition = "center";
+            body.style.backgroundRepeat = "no-repeat";
+            body.style.minHeight = "100vh";
+        } else {
+            console.error("L'élément #body n'existe pas dans le DOM.");
+        }
+    }
 
     console.log(`Nombre de paires : ${nbPaires}, Temps : ${temps}, Difficulté : ${difficulte}`);
 
