@@ -60,6 +60,7 @@ function afficherParametres(idParent, params) {
     let parent = document.getElementById(idParent);
 
     const divParams = document.createElement("div");
+    divParams.id = "parametres";
     divParams.className = "parametres d-flex justify-content-between align-items-center"; // Flexbox pour disposition horizontale
     divParams.style.display = "flex"; // Disposition horizontale
     divParams.style.gap = "20px"; // Espacement entre les éléments

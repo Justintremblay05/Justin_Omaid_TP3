@@ -76,16 +76,27 @@ function debuterJeuMémoire() {
     let temps = parseInt(tempsElement.value, 10);
     let difficulte = difficulteElement.value;
     if (difficulte === "Difficile") {
-        let body = document.getElementById("body");
-        if (body) {
-            body.style.backgroundImage = "url('../images/bg.jpg')"; // Remplacez par le chemin de votre image
-            body.style.backgroundSize = "cover";
-            body.style.backgroundPosition = "center";
-            body.style.backgroundRepeat = "no-repeat";
-            body.style.minHeight = "100vh";
-        } else {
-            console.error("L'élément #body n'existe pas dans le DOM.");
-        }
+        body.style.backgroundImage = "url('../images/bg.jpg')";
+        body.style.backgroundSize = "cover";
+        body.style.backgroundPosition = "center";
+        body.style.backgroundRepeat = "no-repeat";
+        body.style.minHeight = "100vh";
+
+        let nbvies = document.createElement("div");
+        nbvies.className = "d-flex flex-wrap justify-content-center";
+        let nbimages = document.createElement("img");
+        nbimages.src = "../images/5.png";
+        nbimages.className = "border border-dark rounded";
+
+        let parametres = document.getElementById("parametres");
+        parametres.className = "bg-light border border-dark rounded m-2";
+
+        nbvies.appendChild(nbimages);
+        main.appendChild(nbvies);
+         
+    }
+    else {
+        body.style.backgroundImage = "none";
     }
 
     console.log(`Nombre de paires : ${nbPaires}, Temps : ${temps}, Difficulté : ${difficulte}`);
@@ -230,19 +241,8 @@ function init_jeu_memoire() {
     // Ajout des classes pour le style
     main.className = "grid container";
 
-    // Création des divs pour les paramètres et le bouton
-    let div1 = document.createElement("div");
-    div1.className = "col-12";
-
-    let div2 = document.createElement("div");
-    div2.className = "col-12";
-
     // Appel de la fonction afficherParametres
     afficherParametres("main", _paramètres); // Appel direct sans appendChild
-
-    // Ajout des divs au <main>
-    main.appendChild(div1);
-    main.appendChild(div2);
 
     // Génération des cartes
     tableauDesCartes = genererCartes(_paramètres.nbPaires);
