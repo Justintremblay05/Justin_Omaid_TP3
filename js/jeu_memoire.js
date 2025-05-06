@@ -55,6 +55,7 @@ let body = document.getElementById("body");
  */
 let nbviesrestant = 5;
 
+///soccupe de faire apparaitre les cartes et de gerer le jeu
 function debuterJeuMémoire() {
     let cartes = document.getElementById("cartes");
     if (!cartes) {
@@ -144,6 +145,7 @@ function debuterJeuMémoire() {
     intervalID = setInterval(decrementerTimer, 1000);
 }
 
+/// pertmet de faire diminier le timer et s'occupe de gerer la fin du timer
 function decrementerTimer() {
     let timerElement = document.getElementById("timer");
     let timerValue = parseInt(timerElement.textContent, 10);
@@ -158,6 +160,7 @@ function decrementerTimer() {
     }
 }
 
+/// permet de melanger les cartes
 function melangerElements(tableau) {
     let currentIndex = tableau.length;
 
@@ -176,6 +179,7 @@ function melangerElements(tableau) {
 
 let verrouillage = false;
 let pair = 0;
+/// permet de gerer le click sur les cartes et de gerer les paires
 function gererClickCarte(e) {
     if (verrouillage) {
         console.log("Action bloquée : Attendez que les cartes soient retournées.");
@@ -239,7 +243,6 @@ function gererClickCarte(e) {
                 let cheminImage = "../images/" + nbviesrestant + ".png";
                 nbimages.src = cheminImage;
             
-                // Ajoutez un message d'erreur dans la console si l'image ne se charge pas
                 nbimages.onerror = () => {
                     console.error("Image introuvable : " + cheminImage);
                 };
@@ -273,16 +276,12 @@ function terminerJeuMémoire() {
 
 
 function init_jeu_memoire() {
-    // On vide le <main> et on affiche le jeu de mémoire
     main.innerHTML = "";
 
-    // Ajout des classes pour le style
     main.className = "grid container";
 
-    // Appel de la fonction afficherParametres
-    afficherParametres("main", _paramètres); // Appel direct sans appendChild
+    afficherParametres("main", _paramètres);
 
-    // Génération des cartes
     tableauDesCartes = genererCartes(_paramètres.nbPaires);
 }
 
