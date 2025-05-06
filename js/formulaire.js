@@ -64,7 +64,12 @@ function validerPseudo() {
 
 function validerFormulaire()
 {
-	document.getElementById("pseudoespace").textContent = document.getElementById("pseudo").value;
+	let pseudoElement = document.getElementById("pseudo");
+	if (pseudoElement) {
+		document.getElementById("pseudoespace").textContent = pseudoElement.value;
+	} else {
+		document.getElementById("pseudoespace").textContent = "invité";
+	}
 
 	if(!validerPrenom() || !validerNom() || !validerCourriel() || !validerConfirmation() || !validerPseudo()) {
 		
@@ -82,7 +87,7 @@ function afficherChoixJeu() {
     main.className = "d-flex justify-content-around";
 
     let principal = document.createElement("div");
-	principal.id = "principal";
+    principal.id = "principal";
     principal.className = "row";
 
     // Création de div2 pour le jeu de mémoire
@@ -99,10 +104,9 @@ function afficherChoixJeu() {
     descriptionMemoire.textContent = "Description du jeu de mémoire";
     div2.appendChild(descriptionMemoire);
 
-
     // Création de div3 pour le quiz
     let div3 = document.createElement("div");
-	div3.id = "jeuQuiz";
+    div3.id = "jeuQuiz";
     div3.className = "col-6";
     let titreQuiz = document.createElement("h3");
     titreQuiz.textContent = "Jeu de quiz";
@@ -115,17 +119,21 @@ function afficherChoixJeu() {
     div3.appendChild(descriptionQuiz);
 
     // Ajout des divs au conteneur principal
-    principal.append(div3 , div2);
+    principal.appendChild(div3);
+    principal.appendChild(div2);
     main.appendChild(principal);
 
     // Ajout de l'événement pour démarrer le jeu de mémoire
     div2.addEventListener("click", init_jeu_memoire);
-	div3.addEventListener("click", init_quiz);
+    div3.addEventListener("click", init_quiz);
 
-	//Pseudo qui reste affiché dans le header
+    // Vérification pour pseudo
     let pseudoElement = document.getElementById("pseudo");
-	document.getElementById("pseudoespace").textContent = pseudoElement.value;
-
+    if (pseudoElement) {
+        document.getElementById("pseudoespace").textContent = pseudoElement.value;
+    } else {
+        document.getElementById("pseudoespace").textContent = "invité"; // Valeur par défaut
+    }
 }
 
 function gererBtnInvite()

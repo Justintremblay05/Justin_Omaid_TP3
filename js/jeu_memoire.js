@@ -42,6 +42,9 @@ let _paramètres = {
     difficulté: "Facile"
 };
 
+let intervalID;
+let main = document.getElementById("main");
+
 /* FIN variables globales */
 // ##########################
 
@@ -71,6 +74,9 @@ function debuterJeuMémoire() {
     let nbPaires = parseInt(nbPairesElement.value, 10);
     let temps = parseInt(tempsElement.value, 10);
     let difficulte = difficulteElement.value;
+    // if (difficulte === "Difficile") {
+    //     main.
+    // }
 
     console.log(`Nombre de paires : ${nbPaires}, Temps : ${temps}, Difficulté : ${difficulte}`);
 
@@ -106,7 +112,6 @@ function debuterJeuMémoire() {
         cartes.appendChild(carte);
     });
 
-    let main = document.getElementById("main");
     main.appendChild(cartes);
 
     let timerElement = document.getElementById("timer");
@@ -116,12 +121,15 @@ function debuterJeuMémoire() {
 }
 
 function decrementerTimer() {
-    let timerValue = parseInt(document.getElementById("timer").textContent, 10);
+    let timerElement = document.getElementById("timer");
+    let timerValue = parseInt(timerElement.textContent, 10);
+
     if (timerValue > 0) {
         timerValue--;
-        document.getElementById("timer").textContent = timerValue;
+        timerElement.textContent = timerValue;
     } else {
-        ClearInterval(intervalID);
+        console.log("Le timer est fini");
+        clearInterval(intervalID);
         terminerJeuMémoire();
     }
 }
@@ -172,7 +180,7 @@ function gererClickCarte(e) {
             cartesSelectionnées = [];
             verrouillage = false;
             pair++;
-            if (pair === document.getElementById("nbPaires").value) {
+            if (pair === parseInt(document.getElementById("nbPaires").value)) {
                 terminerJeuMémoire();
             }
         } else {
@@ -192,36 +200,42 @@ function gererClickCarte(e) {
  * car il a été créé dans la fonction afficherParametres() dans le fichier js/utils.js
  */
 function terminerJeuMémoire() {
-    // Todo : faire la logique
-    if(pair === document.getElementById("nbPaires").value) {
+    let nbPaires = parseInt(document.getElementById("nbPaires").value, 10);
+    console.log(`Paires trouvées : ${pair}, Nombre de paires total : ${nbPaires}`);
+
+    if (pair === nbPaires) {
+        console.log("Vous avez gagné !");
         Gagner();
-    }
-    else{
+    } else {
+        console.log("Vous avez perdu !");
         Perdre();
     }
 }
 
 
 function init_jeu_memoire() {
-    // On doiter vider le <main> et on affiche le jeu de mémoire
-    let main = document.getElementById("main");
+    // On vide le <main> et on affiche le jeu de mémoire
     main.innerHTML = "";
-    // Affichage de son interface HTML (cartes, etc.) 
-    // Voir la documentation de la fonction pour plus de détails
-    // Exemple d'utilisation : 
 
-
+    // Ajout des classes pour le style
     main.className = "grid container";
+
+    // Création des divs pour les paramètres et le bouton
     let div1 = document.createElement("div");
-    div1.className = "col-12"
+    div1.className = "col-12";
+
     let div2 = document.createElement("div");
-    div2.className = "col-12"
-    div1.appendChild(afficherParametres("main", _paramètres));
-    div2.appendChild(debuterJeuMémoire);
+    div2.className = "col-12";
+
+    // Appel de la fonction afficherParametres
+    afficherParametres("main", _paramètres); // Appel direct sans appendChild
+
+    // Ajout des divs au <main>
     main.appendChild(div1);
     main.appendChild(div2);
-    tableauDesCartes = genererCartes(_paramètres.nbPaires);
 
+    // Génération des cartes
+    tableauDesCartes = genererCartes(_paramètres.nbPaires);
 }
 
 // Ce fichier est inclu dans le fichier index.html et n'a pas besoin d'un addEventListener('load') car

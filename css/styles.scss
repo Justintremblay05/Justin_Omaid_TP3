@@ -51,3 +51,12 @@ header, footer
 img{
     max-width: 100%;
 }
+
+#main {
+    background-image: url('../images/Icon.jpg'); // Remplacez par le chemin de votre image
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 20px; // Ajout d'un espace intérieur pour le contenu
+}
