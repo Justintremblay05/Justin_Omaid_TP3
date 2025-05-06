@@ -53,6 +53,8 @@ let body = document.getElementById("body");
  * Débuter le jeu de mémoire (le bouton "Débuter" est cliqué). Cet événement est déjà associé au bon bouton de l'interface
  * car il a été créé dans la fonction afficherParametres() dans le fichier js/utils.js
  */
+let nbviesrestant = 5;
+
 function debuterJeuMémoire() {
     let cartes = document.getElementById("cartes");
     if (!cartes) {
@@ -66,15 +68,17 @@ function debuterJeuMémoire() {
     let nbPairesElement = document.getElementById("nbPaires");
     let tempsElement = document.getElementById("temps");
     let difficulteElement = document.getElementById("diff");
+    let nbPaires = parseInt(nbPairesElement.value, 10);
+    let temps = parseInt(tempsElement.value, 10);
+    let difficulte = difficulteElement.value;
 
     if (!nbPairesElement || !tempsElement || !difficulteElement) {
         console.error("Un ou plusieurs éléments nécessaires (#nbPaires, #temps, #diff) n'existent pas dans le DOM.");
         return;
     }
-
-    let nbPaires = parseInt(nbPairesElement.value, 10);
-    let temps = parseInt(tempsElement.value, 10);
-    let difficulte = difficulteElement.value;
+    
+    
+    let nbvies = document.createElement("div");
     if (difficulte === "Difficile") {
         body.style.backgroundImage = "url('../images/bg.jpg')";
         body.style.backgroundSize = "cover";
@@ -83,9 +87,11 @@ function debuterJeuMémoire() {
         body.style.minHeight = "100vh";
 
         let nbvies = document.createElement("div");
+        nbvies.id = "nbvies";
         nbvies.className = "d-flex flex-wrap justify-content-center";
         let nbimages = document.createElement("img");
-        nbimages.src = "../images/5.png";
+        nbimages.id = "imgvies";
+        nbimages.src = "../images/"+nbviesrestant+".png";
         nbimages.className = "border border-dark rounded";
 
         let parametres = document.getElementById("parametres");
@@ -94,9 +100,6 @@ function debuterJeuMémoire() {
         nbvies.appendChild(nbimages);
         main.appendChild(nbvies);
          
-    }
-    else {
-        body.style.backgroundImage = "none";
     }
 
     console.log(`Nombre de paires : ${nbPaires}, Temps : ${temps}, Difficulté : ${difficulte}`);
@@ -212,6 +215,25 @@ function gererClickCarte(e) {
                 cartesSelectionnées = [];
                 verrouillage = false;
             }, 1000);
+
+            let difficulteElement = document.getElementById("diff");
+            let difficulte = difficulteElement.value;
+            if(difficulte === "Difficile") {
+                
+                nbviesrestant--;
+                let nbvies = document.getElementById("nbvies");
+                nbvies.innerHTML = "";
+                let nbimages = document.getElementById("imgvies");
+                nbimages.src = "../images/"+nbviesrestant+".png";
+
+                nbvies.appendChild(nbimages);
+                main.appendChild(nbvies);.
+                if (nbviesrestant === 0) {
+                    console.log("Vous avez perdu !");
+                    clearInterval(intervalID);
+                    terminerJeuMémoire();
+                }
+            }
         }
     }
 }
