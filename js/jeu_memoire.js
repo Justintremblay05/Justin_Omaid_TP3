@@ -218,16 +218,32 @@ function gererClickCarte(e) {
 
             let difficulteElement = document.getElementById("diff");
             let difficulte = difficulteElement.value;
-            if(difficulte === "Difficile") {
-                
+            if (difficulte === "Difficile") {
                 nbviesrestant--;
+            
                 let nbvies = document.getElementById("nbvies");
-                nbvies.innerHTML = "";
+                if (!nbvies) {
+                    nbvies = document.createElement("div");
+                    nbvies.id = "nbvies";
+                    main.appendChild(nbvies);
+                }
+                
                 let nbimages = document.getElementById("imgvies");
-                nbimages.src = "../images/"+nbviesrestant+".png";
-
-                nbvies.appendChild(nbimages);
-                main.appendChild(nbvies);.
+                if (!nbimages) {
+                    nbimages = document.createElement("img");
+                    nbimages.id = "imgvies";
+                    nbimages.className = "border border-dark rounded";
+                    nbvies.appendChild(nbimages);
+                }
+            
+                let cheminImage = "../images/" + nbviesrestant + ".png";
+                nbimages.src = cheminImage;
+            
+                // Ajoutez un message d'erreur dans la console si l'image ne se charge pas
+                nbimages.onerror = () => {
+                    console.error("Image introuvable : " + cheminImage);
+                };
+            
                 if (nbviesrestant === 0) {
                     console.log("Vous avez perdu !");
                     clearInterval(intervalID);
