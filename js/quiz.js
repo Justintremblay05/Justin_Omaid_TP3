@@ -31,12 +31,12 @@ let donnees = [
     {
         question: "De quelle région vient Yasuo",
         réponses: [
-            "Ionia",
             "Noxus",
+            "Ionia",
             "Shurima",
             "Bilgewater"
         ],
-        réponse: 0
+        réponse: 1
     },
     {
         question: "Quel champion a pour titre La Main de Noxus ?",
@@ -59,23 +59,23 @@ let donnees = [
         réponse: 2
     },
     {
-        question: "Qui a tué le père de Katarina, selon les événements récents du lore ?",
+        question: "Quelle champion est responsable de la corruption connue sous le nom de la Brume noire ?",
         réponses:[
-            "Swain",
-            "Talon",
-            "Leblanc",
-            "Katarina elle-même"
+            "Hecarim",
+            "Karthus",
+            "Mordekaiser",
+            "Viego"
         ],
-        réponse:0
-    },
+        réponse:3
+    }
 ];
 
 let indexQuestion = 0;
 let score = 0;
-//6 questions minimum 12 maximum;
+const musiqueBon = new Audio("sons/bon.mp3");
+const musiqueMauvais = new Audio("sons/mauvais.mp3");
 //* FIN variables globales */	
 // // ##########################
-
 
 function init_quiz() {
     let main = document.getElementById("main");
@@ -89,7 +89,7 @@ function init_quiz() {
 
     let tableau = donnees[indexQuestion];
     let div = document.createElement("div");
-
+    div.className = "fade-in";
     let h2 = document.createElement("h2");
     h2.textContent = `Question ${indexQuestion + 1} / ${donnees.length}`;
     div.appendChild(h2);
@@ -127,7 +127,6 @@ function init_quiz() {
     main.appendChild(div);
 }
 
-
 function bouttonSuivant() {
     let input = document.getElementById("reponseUtilisateur");
     let valeur = input.value.trim();
@@ -148,6 +147,7 @@ function bouttonSuivant() {
         }
     }
 
+    
     indexQuestion++;
     init_quiz();
 }
@@ -170,14 +170,17 @@ function afficherResultat() {
         p.textContent = "Vous avez réussi";
         img.src = "images/victory.jpg";
         img.alt = "Résultat";
-        img.className ="img";
+        img.className ="img animate__animated animate__bounceIn";
+        musiqueBon.play();
     }
     else
     {
         p.textContent = "Vous avez échoué";
         img.src = "images/defeat.jpg";
         img.alt = "Résultat";
-        img.className = "img";
+        img.className = "img animate__animated animate__bounceIn";
+        musiqueMauvais.play();
+
     }
     div.append(p , img);
     main.appendChild(div);

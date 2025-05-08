@@ -1,4 +1,0 @@
-Déposer dans ce dossier 12 images différentes, de même dimension (idéalement, ce sera plus facile à intégrer).
-Nommer 1.png, 2.png, 3.png, etc.
-
-Le programme pourra donc tenir pour acquis que les images sont dans cartes/1.png, etc.

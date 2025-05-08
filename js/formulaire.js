@@ -88,7 +88,7 @@ function afficherChoixJeu() {
 
     let principal = document.createElement("div");
     principal.id = "principal";
-    principal.className = "row";
+    principal.className = "row fade-in";
 
     // Création de div2 pour le jeu de mémoire
     let div2 = document.createElement("div");
@@ -101,7 +101,6 @@ function afficherChoixJeu() {
     imgMemoire.src = "../images/img_jeu_memoire.jpg";
     div2.appendChild(imgMemoire);
     let descriptionMemoire = document.createElement("p");
-    descriptionMemoire.textContent = "Description du jeu de mémoire";
     div2.appendChild(descriptionMemoire);
 
     // Création de div3 pour le quiz
@@ -115,7 +114,6 @@ function afficherChoixJeu() {
     imgQuiz.src = "../images/img_jeu_memoire.jpg";
     div3.appendChild(imgQuiz);
     let descriptionQuiz = document.createElement("p");
-    descriptionQuiz.textContent = "Description du jeu de quiz";
     div3.appendChild(descriptionQuiz);
 
     // Ajout des divs au conteneur principal
