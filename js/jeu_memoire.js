@@ -56,7 +56,10 @@ let body = document.getElementById("body");
 let nbviesrestant = 5;
 
 ///soccupe de faire apparaitre les cartes et de gerer le jeu
+const musiquejeu = new Audio("../sons/musique.mp3");
 function debuterJeuMémoire() {
+    
+    musiquejeu.play();
     let cartes = document.getElementById("cartes");
     if (!cartes) {
         cartes = document.createElement("div");
@@ -81,6 +84,10 @@ function debuterJeuMémoire() {
     
     let nbvies = document.createElement("div");
     if (difficulte === "Difficile") {
+
+        nbPaires = 10;
+        temps = 40;
+
         body.style.backgroundImage = "url('../images/bg.jpg')";
         body.style.backgroundSize = "cover";
         body.style.backgroundPosition = "center";
@@ -133,9 +140,9 @@ function debuterJeuMémoire() {
 
     melangerElements(lesCartes);
 
-    lesCartes.forEach((carte) => {
-        cartes.appendChild(carte);
-    });
+    for (let i = 0; i < lesCartes.length; i++) {
+        cartes.appendChild(lesCartes[i]);
+    }
 
     main.appendChild(cartes);
 
@@ -211,8 +218,13 @@ function gererClickCarte(e) {
             if (pair === parseInt(document.getElementById("nbPaires").value)) {
                 terminerJeuMémoire();
             }
-        } else {
+	        const musique = new Audio("../sons/bon.mp3");
+            musique.play();
+        } 
+        else {
             console.log("Les cartes ne correspondent pas !");
+            const musique = new Audio("../sons/mauvais.mp3");
+            musique.play();
             setTimeout(() => {
                 carte1.src = "../images/Icon.jpg";
                 carte2.src = "../images/Icon.jpg";
@@ -262,6 +274,7 @@ function gererClickCarte(e) {
  * car il a été créé dans la fonction afficherParametres() dans le fichier js/utils.js
  */
 function terminerJeuMémoire() {
+    musiquejeu.pause();
     let nbPaires = parseInt(document.getElementById("nbPaires").value, 10);
     console.log(`Paires trouvées : ${pair}, Nombre de paires total : ${nbPaires}`);
 
