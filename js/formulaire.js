@@ -143,7 +143,7 @@ function gererBtnInvite()
 
 
 function Gagner(){
-	const musique = new Audio("../sons/bon.mp3");
+	const musique = new Audio("../sons/victoire.mp3");
 	let main = document.getElementById("main");
 	main.innerHTML = "";
 	let div = document.createElement("div");
@@ -161,7 +161,7 @@ function Gagner(){
 }
 
 function Perdre(){
-	const musique = new Audio("../sons/mauvais.mp3");
+	const musique = new Audio("../sons/defaite.mp3");
 	let main = document.getElementById("main");
 	main.innerHTML = "";
 	let div = document.createElement("div");
