@@ -92,26 +92,24 @@ function afficherChoixJeu() {
 
     // Création de div2 pour le jeu de mémoire
     let div2 = document.createElement("div");
-    div2.id = "jeuMemoire";
     div2.className = "col-6";
     let titreMemoire = document.createElement("h3");
     titreMemoire.textContent = "Jeu de mémoire";
     div2.appendChild(titreMemoire);
     let imgMemoire = document.createElement("img");
-    imgMemoire.src = "../images/img_jeu_memoire.jpg";
+    imgMemoire.src = "../images/memoire.png";
     div2.appendChild(imgMemoire);
     let descriptionMemoire = document.createElement("p");
     div2.appendChild(descriptionMemoire);
 
     // Création de div3 pour le quiz
     let div3 = document.createElement("div");
-    div3.id = "jeuQuiz";
     div3.className = "col-6";
     let titreQuiz = document.createElement("h3");
     titreQuiz.textContent = "Jeu de quiz";
     div3.appendChild(titreQuiz);
     let imgQuiz = document.createElement("img");
-    imgQuiz.src = "../images/img_jeu_memoire.jpg";
+    imgQuiz.src = "../images/quiz.png";
     div3.appendChild(imgQuiz);
     let descriptionQuiz = document.createElement("p");
     div3.appendChild(descriptionQuiz);
