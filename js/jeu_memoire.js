@@ -58,7 +58,9 @@ let nbviesrestant = 5;
 ///soccupe de faire apparaitre les cartes et de gerer le jeu
 const musiquejeu = new Audio("../sons/musique.mp3");
 function debuterJeuMémoire() {
-    
+    if (intervalID) {
+        clearInterval(intervalID);
+    }
     musiquejeu.play();
     let cartes = document.getElementById("cartes");
     if (!cartes) {
