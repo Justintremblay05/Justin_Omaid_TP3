@@ -81,8 +81,6 @@ function debuterJeuMémoire() {
         return;
     }
     
-    
-    let nbvies = document.createElement("div");
     if (difficulte === "Difficile") {
 
         nbPaires = 10;
