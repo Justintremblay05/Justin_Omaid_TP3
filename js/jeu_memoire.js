@@ -46,17 +46,17 @@ let intervalID;
 let main = document.getElementById("main");
 let body = document.getElementById("body");
 
+let nbviesrestant = 5;
+const musiquejeu = new Audio("../sons/musique.mp3");
 /* FIN variables globales */
 // ##########################
 
 /**
  * Débuter le jeu de mémoire (le bouton "Débuter" est cliqué). Cet événement est déjà associé au bon bouton de l'interface
  * car il a été créé dans la fonction afficherParametres() dans le fichier js/utils.js
- */
-let nbviesrestant = 5;
+*/
 
 ///soccupe de faire apparaitre les cartes et de gerer le jeu
-const musiquejeu = new Audio("../sons/musique.mp3");
 function debuterJeuMémoire() {
     if (intervalID) {
         clearInterval(intervalID);

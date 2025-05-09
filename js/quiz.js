@@ -72,8 +72,8 @@ let donnees = [
 
 let indexQuestion = 0;
 let score = 0;
-const musiqueBon = new Audio("sons/bon.mp3");
-const musiqueMauvais = new Audio("sons/mauvais.mp3");
+const musiqueBon = new Audio("sons/victoire.mp3");
+const musiqueMauvais = new Audio("sons/defaite.mp3");
 //* FIN variables globales */	
 // // ##########################
 
