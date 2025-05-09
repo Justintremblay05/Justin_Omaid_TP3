@@ -58,7 +58,9 @@ let nbviesrestant = 5;
 ///soccupe de faire apparaitre les cartes et de gerer le jeu
 const musiquejeu = new Audio("../sons/musique.mp3");
 function debuterJeuMémoire() {
-    
+    if (intervalID) {
+        clearInterval(intervalID);
+    }
     musiquejeu.play();
     let cartes = document.getElementById("cartes");
     if (!cartes) {
@@ -82,7 +84,7 @@ function debuterJeuMémoire() {
     }
     
     if (difficulte === "Difficile") {
-
+        
         nbPaires = 10;
         temps = 40;
 
@@ -92,12 +94,18 @@ function debuterJeuMémoire() {
         body.style.backgroundRepeat = "no-repeat";
         body.style.minHeight = "100vh";
 
-        let nbvies = document.createElement("div");
+        let nbvies = document.getElementById("nbvies");
+        if (nbvies) {
+            nbvies.remove();
+        }
+
+        nbvies = document.createElement("div");
         nbvies.id = "nbvies";
         nbvies.className = "d-flex flex-wrap justify-content-center";
+
         let nbimages = document.createElement("img");
         nbimages.id = "imgvies";
-        nbimages.src = "../images/"+nbviesrestant+".png";
+        nbimages.src = "../images/" + nbviesrestant + ".png";
         nbimages.className = "border border-dark rounded";
 
         let parametres = document.getElementById("parametres");
@@ -150,7 +158,6 @@ function debuterJeuMémoire() {
     intervalID = setInterval(decrementerTimer, 1000);
 }
 
-/// pertmet de faire diminier le timer et s'occupe de gerer la fin du timer
 function decrementerTimer() {
     let timerElement = document.getElementById("timer");
     let timerValue = parseInt(timerElement.textContent, 10);
@@ -165,7 +172,6 @@ function decrementerTimer() {
     }
 }
 
-/// permet de melanger les cartes
 function melangerElements(tableau) {
     let currentIndex = tableau.length;
 
@@ -184,7 +190,6 @@ function melangerElements(tableau) {
 
 let verrouillage = false;
 let pair = 0;
-/// permet de gerer le click sur les cartes et de gerer les paires
 function gererClickCarte(e) {
     if (verrouillage) {
         console.log("Action bloquée : Attendez que les cartes soient retournées.");
