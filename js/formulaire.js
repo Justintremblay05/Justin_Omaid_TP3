@@ -81,7 +81,12 @@ function validerFormulaire()
 }
 
 function afficherChoixJeu() {
-    // Vide le <main> et affiche le choix du jeu
+	let pseudoElement = document.getElementById("pseudo");
+    if (pseudoElement) {
+        document.getElementById("pseudoespace").textContent = pseudoElement.value;
+    } else {
+        document.getElementById("pseudoespace").textContent = "invité";
+    }
     let main = document.getElementById("main");
     main.innerHTML = "";
     main.className = "d-flex justify-content-around";
@@ -90,7 +95,6 @@ function afficherChoixJeu() {
     principal.id = "principal";
     principal.className = "row fade-in";
 
-    // Création de div2 pour le jeu de mémoire
     let div2 = document.createElement("div");
     div2.className = "col-6";
     let titreMemoire = document.createElement("h3");
@@ -102,7 +106,6 @@ function afficherChoixJeu() {
     let descriptionMemoire = document.createElement("p");
     div2.appendChild(descriptionMemoire);
 
-    // Création de div3 pour le quiz
     let div3 = document.createElement("div");
     div3.className = "col-6";
     let titreQuiz = document.createElement("h3");
@@ -114,22 +117,14 @@ function afficherChoixJeu() {
     let descriptionQuiz = document.createElement("p");
     div3.appendChild(descriptionQuiz);
 
-    // Ajout des divs au conteneur principal
     principal.appendChild(div3);
     principal.appendChild(div2);
     main.appendChild(principal);
 
-    // Ajout de l'événement pour démarrer le jeu de mémoire
     div2.addEventListener("click", init_jeu_memoire);
     div3.addEventListener("click", init_quiz);
 
-    // Vérification pour pseudo
-    let pseudoElement = document.getElementById("pseudo");
-    if (pseudoElement) {
-        document.getElementById("pseudoespace").textContent = pseudoElement.value;
-    } else {
-        document.getElementById("pseudoespace").textContent = "invité"; // Valeur par défaut
-    }
+    
 }
 
 function gererBtnInvite()
@@ -181,8 +176,6 @@ function Perdre(){
 
 
 function init_formulaire() {
- 
-	// Simple bouton pour passer le formulaire et aller au jeu de mémoire directement
 	let btnInvite = document.getElementById("btnInvite");
 	btnInvite.addEventListener("click", gererBtnInvite, false);
 
