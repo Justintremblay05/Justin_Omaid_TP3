@@ -64,13 +64,6 @@ function validerPseudo() {
 
 function validerFormulaire()
 {
-	let pseudoElement = document.getElementById("pseudo");
-	if (pseudoElement) {
-		document.getElementById("pseudoespace").textContent = pseudoElement.value;
-	} else {
-		document.getElementById("pseudoespace").textContent = "invité";
-	}
-
 	if(!validerPrenom() || !validerNom() || !validerCourriel() || !validerConfirmation() || !validerPseudo()) {
 		
 		return false;
