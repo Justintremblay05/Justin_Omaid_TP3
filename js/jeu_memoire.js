@@ -47,7 +47,11 @@ let main = document.getElementById("main");
 let body = document.getElementById("body");
 
 let nbviesrestant = 5;
-const musiquejeu = new Audio("../sons/musique.mp3");
+const musiquejeu = new Audio("../sons/jeu.mp3");
+const musiqueVictoire = new Audio("sons/victoire.mp3");
+const musiqueDefaite = new Audio("sons/defaite.mp3");
+const musiqueBon = new Audio("../sons/bon.mp3");
+const musiqueMauvais = new Audio("../sons/mauvais.mp3");
 /* FIN variables globales */
 // ##########################
 
@@ -221,13 +225,11 @@ function gererClickCarte(e) {
             if (pair === parseInt(document.getElementById("nbPaires").value)) {
                 terminerJeuMémoire();
             }
-	        const musique = new Audio("../sons/bon.mp3");
-            musique.play();
+            musiqueBon.play();
         } 
         else {
             console.log("Les cartes ne correspondent pas !");
-            const musique = new Audio("../sons/mauvais.mp3");
-            musique.play();
+            musiqueMauvais.play();
             setTimeout(() => {
                 carte1.src = "../images/Icon.jpg";
                 carte2.src = "../images/Icon.jpg";
@@ -290,6 +292,39 @@ function terminerJeuMémoire() {
     }
 }
 
+function Gagner(){
+	let main = document.getElementById("main");
+	main.innerHTML = "";
+	let div = document.createElement("div");
+	div.className = "text-center";
+	let h2 = document.createElement("h2");
+	h2.textContent = "Vous avez gagné !";
+	div.appendChild(h2);
+	let img = document.createElement("img");
+	img.src = "../images/victory.jpg";
+	img.alt = "Résultat";
+	img.className ="img animate__animated animate__bounceIn";
+	div.appendChild(img);
+	main.appendChild(div);
+	musiqueVictoire.play();
+}
+
+function Perdre(){
+	let main = document.getElementById("main");
+	main.innerHTML = "";
+	let div = document.createElement("div");
+	div.className = "text-center";
+	let h2 = document.createElement("h2");
+	h2.textContent = "Vous avez perdu !";
+	div.appendChild(h2);
+	let img = document.createElement("img");
+	img.src = "../images/defeat.jpg";
+	img.alt = "Résultat";
+	img.className ="img animate__animated animate__bounceIn";
+	div.appendChild(img);
+	main.appendChild(div);
+	musiqueDefaite.play();
+}
 
 function init_jeu_memoire() {
     main.innerHTML = "";

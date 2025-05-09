@@ -72,8 +72,6 @@ let donnees = [
 
 let indexQuestion = 0;
 let score = 0;
-const musiqueBon = new Audio("sons/victoire.mp3");
-const musiqueMauvais = new Audio("sons/defaite.mp3");
 //* FIN variables globales */	
 // // ##########################
 
@@ -147,7 +145,6 @@ function bouttonSuivant() {
         }
     }
 
-    
     indexQuestion++;
     init_quiz();
 }
@@ -171,7 +168,7 @@ function afficherResultat() {
         img.src = "images/victory.jpg";
         img.alt = "Résultat";
         img.className ="img animate__animated animate__bounceIn";
-        musiqueBon.play();
+        musiqueVictoire.play();
     }
     else
     {
@@ -179,7 +176,7 @@ function afficherResultat() {
         img.src = "images/defeat.jpg";
         img.alt = "Résultat";
         img.className = "img animate__animated animate__bounceIn";
-        musiqueMauvais.play();
+        musiqueDefaite.play();
 
     }
     div.append(p , img);

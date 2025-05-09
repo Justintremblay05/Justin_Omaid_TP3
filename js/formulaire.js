@@ -126,48 +126,6 @@ function gererBtnInvite()
 	afficherChoixJeu();
 }
 
-
-
-function Gagner(){
-	const musique = new Audio("../sons/victoire.mp3");
-	let main = document.getElementById("main");
-	main.innerHTML = "";
-	let div = document.createElement("div");
-	div.className = "text-center";
-	let h2 = document.createElement("h2");
-	h2.textContent = "Vous avez gagné !";
-	div.appendChild(h2);
-	let img = document.createElement("img");
-	img.src = "../images/victory.jpg";
-	img.alt = "Résultat";
-	img.className ="img";
-	div.appendChild(img);
-	main.appendChild(div);
-	musique.play();
-}
-
-function Perdre(){
-	const musique = new Audio("../sons/defaite.mp3");
-	let main = document.getElementById("main");
-	main.innerHTML = "";
-	let div = document.createElement("div");
-	div.className = "text-center";
-	let h2 = document.createElement("h2");
-	h2.textContent = "Vous avez perdu !";
-	div.appendChild(h2);
-	let img = document.createElement("img");
-	img.src = "../images/defeat.jpg";
-	img.alt = "Résultat";
-	img.className ="img";
-	div.appendChild(img);
-	main.appendChild(div);
-	musique.play();
-}
-
-
-
-
-
 function init_formulaire() {
 	let btnInvite = document.getElementById("btnInvite");
 	btnInvite.addEventListener("click", gererBtnInvite, false);
