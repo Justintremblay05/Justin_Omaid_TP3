@@ -74,14 +74,14 @@ function validerFormulaire()
 }
 
 function afficherChoixJeu() {
-    let pseudoInput = document.getElementById("pseudo");
-    let pseudo = pseudoInput.value;
+    let pseudo = document.getElementById("pseudo").value;
 
     if (pseudo === "") {
         pseudo = "invité";
     }
 
-    let pseudoElement = document.getElementById("pseudoespace");
+	let pseudoElement = document.getElementById("pseudoespace");
+	pseudoElement.textContent = pseudo;
 
     let main = document.getElementById("main");
     main.innerHTML = "";
@@ -123,7 +123,6 @@ function afficherChoixJeu() {
 
 function gererBtnInvite()
 {
-	document.getElementById("pseudoespace").textContent = "invité";
 	afficherChoixJeu();
 }
 
