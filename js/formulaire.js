@@ -74,7 +74,7 @@ function validerFormulaire()
 }
 
 function afficherChoixJeu() {
-	let pseudoElement = document.getElementById("pseudo");
+
     
     let main = document.getElementById("main");
     main.innerHTML = "";
