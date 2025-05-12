@@ -61,6 +61,7 @@ const musiqueMauvais = new Audio("../sons/mauvais.mp3");
 */
 
 ///soccupe de faire apparaitre les cartes et de gerer le jeu
+///genere les cartes et demarre le jeu
 function debuterJeuMémoire() {
     if (intervalID) {
         clearInterval(intervalID);
@@ -163,6 +164,8 @@ function debuterJeuMémoire() {
     intervalID = setInterval(decrementerTimer, 1000);
 }
 
+///fait diminuer le timer
+///et verifie si il est a 0 pour arreter le jeu
 function decrementerTimer() {
     let timerElement = document.getElementById("timer");
     let timerValue = parseInt(timerElement.textContent, 10);
@@ -177,6 +180,7 @@ function decrementerTimer() {
     }
 }
 
+///Melanger les cardes pour pas qu'ils soit en ordre
 function melangerElements(tableau) {
     let currentIndex = tableau.length;
 
@@ -195,6 +199,7 @@ function melangerElements(tableau) {
 
 let verrouillage = false;
 let pair = 0;
+///Gere tout ce qui peut arriver après le click sur une carte
 function gererClickCarte(e) {
     if (verrouillage) {
         console.log("Action bloquée : Attendez que les cartes soient retournées.");
@@ -236,7 +241,7 @@ function gererClickCarte(e) {
                 carte2.src = "../images/Icon.jpg";
                 cartesSelectionnées = [];
                 verrouillage = false;
-            }, 1000);
+            }, 500);
 
             let difficulteElement = document.getElementById("diff");
             let difficulte = difficulteElement.value;
