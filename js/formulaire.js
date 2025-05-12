@@ -75,11 +75,7 @@ function validerFormulaire()
 
 function afficherChoixJeu() {
 	let pseudoElement = document.getElementById("pseudo");
-    if (pseudoElement) {
-        document.getElementById("pseudoespace").textContent = pseudoElement.value;
-    } else {
-        document.getElementById("pseudoespace").textContent = "invité";
-    }
+    
     let main = document.getElementById("main");
     main.innerHTML = "";
     main.className = "d-flex justify-content-around";
@@ -128,10 +124,10 @@ function gererBtnInvite()
 
 function init_formulaire() {
 	let btnInvite = document.getElementById("btnInvite");
-	btnInvite.addEventListener("click", gererBtnInvite, false);
+	btnInvite.addEventListener("click", gererBtnInvite);
 
 	let btnSoumettre = document.getElementById("btnSoumettre");
-	btnSoumettre.addEventListener("click", validerFormulaire, false);
+	btnSoumettre.addEventListener("click", validerFormulaire);
 
 	document.getElementById("nom").addEventListener("blur", validerNom);
     document.getElementById("prenom").addEventListener("blur", validerPrenom);

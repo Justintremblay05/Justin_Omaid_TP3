@@ -65,6 +65,7 @@ function debuterJeuMémoire() {
     if (intervalID) {
         clearInterval(intervalID);
     }
+    musiquejeu.currentTime = 0;
     musiquejeu.play();
     let cartes = document.getElementById("cartes");
     if (!cartes) {
@@ -230,7 +231,7 @@ function gererClickCarte(e) {
         else {
             console.log("Les cartes ne correspondent pas !");
             musiqueMauvais.play();
-            setTimeout(() => {
+            setTimeout(function () {
                 carte1.src = "../images/Icon.jpg";
                 carte2.src = "../images/Icon.jpg";
                 cartesSelectionnées = [];
@@ -260,7 +261,7 @@ function gererClickCarte(e) {
                 let cheminImage = "../images/" + nbviesrestant + ".png";
                 nbimages.src = cheminImage;
             
-                nbimages.onerror = () => {
+                nbimages.onerror = function () {
                     console.error("Image introuvable : " + cheminImage);
                 };
             
