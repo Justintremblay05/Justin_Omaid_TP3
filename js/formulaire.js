@@ -74,8 +74,15 @@ function validerFormulaire()
 }
 
 function afficherChoixJeu() {
-	let pseudoElement = document.getElementById("pseudo");
-    
+    let pseudoInput = document.getElementById("pseudo");
+    let pseudo = pseudoInput.value;
+
+    if (pseudo === "") {
+        pseudo = "invité";
+    }
+
+    let pseudoElement = document.getElementById("pseudoespace");
+
     let main = document.getElementById("main");
     main.innerHTML = "";
     main.className = "d-flex justify-content-around";
@@ -112,8 +119,6 @@ function afficherChoixJeu() {
 
     div2.addEventListener("click", init_jeu_memoire);
     div3.addEventListener("click", init_quiz);
-
-    
 }
 
 function gererBtnInvite()
